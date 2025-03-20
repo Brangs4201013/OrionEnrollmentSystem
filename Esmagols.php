@@ -8,7 +8,8 @@
 <body>
     
 <h1>ako ni sir Maglon</h1>
-<h2></h2>
+<h2>connect</h2>
+<h2>connect</h2>
 
 
 </body>
