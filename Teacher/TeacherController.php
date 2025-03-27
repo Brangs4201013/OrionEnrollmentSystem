@@ -1,7 +1,7 @@
 <?php
 include '../Config/connecttodb.php';
 
-if(isset($_POST['saveStudent'])){
+if(isset($_POST['saveTeacher'])){
     $Username = $_POST['username'];
     $Password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Secure password hashing
     $Fname = $_POST['fname'];
@@ -12,7 +12,7 @@ if(isset($_POST['saveStudent'])){
     $Contact = $_POST['contact'];
     $Email = $_POST['email'];
     $Department = $_POST['department'];
-    $Type = 'Student';
+    $Type = 'teacher';
 
     // Use prepared statements
     $sql = "INSERT INTO user (Username, Password, Fname, Lname, Minitial, Gender, Age, Contact, Email, Department, Type) 
@@ -22,12 +22,12 @@ if(isset($_POST['saveStudent'])){
     $stmt->bind_param("ssssssissss", $Username, $Password, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $Type);
 
     if ($stmt->execute()) {
-        header("Location: Studentindex.php?message=created");
+        header("Location: Teacherindex.php?message=created");
     } else {
         echo "Error: " . $stmt->error;
     }
 }
-if(isset($_POST['editStudent'])){
+if(isset($_POST['editTeacher'])){
     $UserID = $_POST['user_id'];
     $Username = $_POST['username'];
     $Fname = $_POST['fname'];
@@ -51,7 +51,7 @@ if(isset($_POST['editStudent'])){
     }
 
     if ($stmt->execute()) {
-        header("Location: Studentindex.php?message=updated");
+        header("Location: Teacherindex.php?message=updated");
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -64,7 +64,7 @@ if (isset($_GET['user_id'])) {
     $stmt = mysqli_prepare($conn, "DELETE FROM user WHERE User_ID = ?");
     mysqli_stmt_bind_param($stmt, "i", $id);
     if ($stmt->execute()) {
-        header("Location: Studentindex.php?message=deleted");
+        header("Location: Teacherindex.php?message=deleted");
     } else {
         echo "Error: " . $stmt->error;
     }
