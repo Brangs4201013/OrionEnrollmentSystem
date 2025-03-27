@@ -56,7 +56,7 @@
                                         data-coursedesc='".$row["coursedesc"]."'>
                                         <i class='fa fa-edit'></i>
                                       </a>";
-                                echo "<a href='CourseController.php?Course_ id=".$row["Course_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
+                                echo "<a href='CourseController.php?Course_ gitid=".$row["Course_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
                                 echo "<i class='fa fa-times'></i>";
                                 echo "</a>";
                                 echo "</td>";
