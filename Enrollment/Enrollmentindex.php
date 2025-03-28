@@ -25,18 +25,26 @@
                       >
                         <thead>
                           <tr>
-                            <th>Schoolyr ID</th>
-                            <th>SchoolYear</th>
-                            <th>Semester</th>
+                            <th>E_ID</th>
+                            <th>User_ID</th>
+                            <th>Schoolyr_ID	</th>
+                            <th>Subject_ID	</th>
+                            <th>Date</th>
+                            <th>Year</th>
+                            <th>Course_ID</th>
                             <th>Actions</th>
                             
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
-                          <th>Schoolyr_ID</th>
-                            <th>SchoolYear</th>
-                            <th>Semester</th>
+                            <th>E_ID</th>
+                            <th>User_ID</th>
+                            <th>Schoolyr_ID	</th>
+                            <th>Subject_ID	</th>
+                            <th>Date</th>
+                            <th>Year</th>
+                            <th>Course_ID</th>
                             <th>Actions</th>
                           </tr>
                         </tfoot>
@@ -48,20 +56,28 @@
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
                                 echo "<tr>";
+                                echo "<td>".$row["E_ID"]."</td>";
+                                echo "<td>".$row["User_ID"]."</td>";
                                 echo "<td>".$row["Schoolyr_ID"]."</td>";
-                                echo "<td>".$row["Schoolyear"]."</td>";
-                                echo "<td>".$row["Semester"]."</td>";
+                                echo "<td>".$row["Subject_ID"]."</td>";
+                                echo "<td>".$row["Date"]."</td>";
+                                echo "<td>".$row["Year"]."</td>";
+                                echo "<td>".$row["Course_ID"]."</td>";
                               
                                 echo "<td>";
-                                echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editSchoolyearModal' 
-                                        data-Schoolyr_ID='".$row["Schoolyr_ID"]."' 
-                                        data-Schoolyear='".$row["Schoolyear"]."' 
-                                        data-Semester='".$row["Semester"]."'>
+                                echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editEnrollmentModal' 
+                                        data-Schoolyr_ID='".$row["E_ID"]."' 
+                                        data-Schoolyr_ID='".$row["User_ID"]."' 
+                                        data-Schoolyear='".$row["Schoolyr_ID"]."' 
+                                        data-Semester='".$row["Subject_ID"]."'>
+                                        data-Schoolyear='".$row["Date"]."' 
+                                        data-Schoolyear='".$row["Year"]."'
+                                        data-Semester='".$row["Course_ID"]."'>
                                         <i class='fa fa-edit'></i>                                  
                                       </a>";
                                     
 
-                                echo "<a href='SchoolYearController.php?SY_id=".$row["Schoolyr_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
+                                echo "<a href='SchoolYearController.php?ENROLLMENT_id=".$row["E_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
                                 echo "<i class='fa fa-times'></i>";
                                 echo "</a>";
                                 echo "</td>";

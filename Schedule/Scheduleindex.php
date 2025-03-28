@@ -14,8 +14,8 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">SchoolYear</h4>
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSchoolyear">Add a new Student</button>
+                    <h4 class="card-title">SCHEDULE</h4>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSchedule">Add a new Schedule</button>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -25,43 +25,45 @@
                       >
                         <thead>
                           <tr>
-                            <th>Schoolyr ID</th>
-                            <th>SchoolYear</th>
-                            <th>Semester</th>
-                            <th>Actions</th>
+                            <th>Sched_ID</th>
+                            <th>Teacher_ID</th>
+                            <th>Subject_ID</th>
+                            <th>Classtime</th>
                             
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
-                          <th>Schoolyr_ID</th>
-                            <th>SchoolYear</th>
-                            <th>Semester</th>
-                            <th>Actions</th>
+                            <th>Sched_ID</th>
+                            <th>Teacher_ID</th>
+                            <th>Subject_ID</th>
+                            <th>Classtime</th>
                           </tr>
                         </tfoot>
                         <tbody>
                             <?php
                             include ('../Config/connecttodb.php');
-                            $sql = "SELECT * FROM Schoolyear";
+                            $sql = "SELECT * FROM schedule";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<td>".$row["Schoolyr_ID"]."</td>";
-                                echo "<td>".$row["Schoolyear"]."</td>";
-                                echo "<td>".$row["Semester"]."</td>";
+                                echo "<td>".$row["Sched_ID"]."</td>";
+                                echo "<td>".$row["Teacher_ID"]."</td>";
+                                echo "<td>".$row["Subject_ID"]."</td>";
+                                echo "<td>".$row["Classtime"]."</td>";
                               
                                 echo "<td>";
-                                echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editSchoolyearModal' 
-                                        data-Schoolyr_ID='".$row["Schoolyr_ID"]."' 
-                                        data-Schoolyear='".$row["Schoolyear"]."' 
-                                        data-Semester='".$row["Semester"]."'>
+                                echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editScheduleModal' 
+                                        data-Sched_ID='".$row["Sched_ID"]."' 
+                                        data-Teacher_ID='".$row["Teacher_ID"]."' 
+                                        data-Subject_ID='".$row["Subject_ID"]."' 
+                                        data-Classtime='".$row["Classtime"]."'>
                                         <i class='fa fa-edit'></i>                                  
                                       </a>";
                                     
 
-                                echo "<a href='SchoolYearController.php?SY_id=".$row["Schoolyr_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
+                                echo "<a href='ScheduleController.php?sched_id=".$row["Sched_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
                                 echo "<i class='fa fa-times'></i>";
                                 echo "</a>";
                                 echo "</td>";
@@ -84,32 +86,87 @@
     <!-- create Student Modal -->
      <!-- Bootstrap Modal -->
 <<!-- Bootstrap Modal -->
-<div class="modal fade" id="addSchoolyear" tabindex="-1" aria-labelledby="addSchoolyearLabel" aria-hidden="true">
+<div class="modal fade" id="addSchedule" tabindex="-1" aria-labelledby="addScheduleLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addSchoolyearLabel">Add New SchoolYear</h5>
+                <h5 class="modal-title" id="addScheduleLabel">Add New Schedule</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="SchoolYearController.php" method="POST">
+                <form action="ScheduleController.php" method="POST">
                     <div class="row">
                         <div class="col-md-10 ms-auto me-auto">
-                       
+                      <?php 
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'Teacher'";
+                                        $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='".$row["User_ID"]."'>".$row["User_ID"]."</option>";
+                                                }
+                                            } else {
+                                                echo "0 results";
+                                            }
+                                    ?>
                             <div class="form-group">
-                                <label for="Schoolyear">Schoolyear</label>
-                                <input type="text" class="form-control" id="Schoolyear" name="Schoolyear" placeholder="Enter Schoolyear" required>
+                                <label for="editTeacher_ID">Name</label>
+                                <select class="form-control" id="editTeacher_ID" name="Teacher_ID" required>
+                                <?php 
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'Teacher'";
+                                        $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='".$row["User_ID"]."'>".$row["Fname"]." ".$row['Minitial']." ". $row. "Lname"."</option>";
+                                                }
+                                            } else {
+                                                echo "<option value=''>No Teachers Available</option>";
+                                            }
+                                    ?>
+                                </select>
                             </div>
+
+                            
+                            <?php 
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'subject'";
+                                        $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='".$row["Sched_ID"]."'>".$row["Sched_ID"]."</option>";
+                                                }
+                                            } else {
+                                                echo "0 results";
+                                            }
+                                    ?>
                             <div class="form-group">
-                                <label for="Semester">Semester</label>
-                                <input type="text" class="form-control" id="Semester" name="Semester" placeholder="Enter Semester" required>
+                                <label for="editSubject_ID">SUBJECT_ID</label>
+                                <select class="form-control" id="editSubject_ID" name="Subject_ID" required>
+                                <?php 
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'subject'";
+                                        $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='".$row["Subject_ID"]."'>".$row["Subject_ID"]."</option>";
+                                                }
+                                            } else {
+                                                echo "<option value=''>No Teachers Available</option>";
+                                            }
+                                    ?>
+                                </select>
                             </div>
-                    
-                           
+
+                            <div class="form-group">
+                                <label for="Classtime">Classtime</label>
+                                <input type="text" class="form-control" id="Classtime" name="Classtime" placeholder="Enter Classtime" required>
+                            </div>
+  
                         </div>
                     </div>
                     <div class="card-action ms-auto me-auto" style="text-align: center;">
-                        <button type="submit" class="btn btn-success" name="saveSchoolYear">Submit</button>
+                        <button type="submit" class="btn btn-success" name="saveSchedule">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -119,35 +176,38 @@
 </div>
 <!-- end of create student modal -->
  <!-- Edit Student Modal -->
-<div class="modal fade" id="editSchoolyearModal" tabindex="-1" aria-labelledby="editSchoolYearLabel" aria-hidden="true">
+<div class="modal fade" id="editScheduleModal" tabindex="-1" aria-labelledby="editScheduleLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editSchoolYearLabel">Edit SchoolYear</h5>
+                <h5 class="modal-title" id="editScheduleLabel">Edit Schedule</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="SchoolYearController.php" method="POST">
-                <input type="hidden" id="Schoolyr_ID" name="schoolyr_ID">
+                <form action="ScheduleController.php" method="POST">
+                <input type="hidden" id="Sched_ID" name="Sched_ID">
 
                     <div class="row">
                         <div class="col-md-6">
                         
                             <div class="form-group">
-                                <label for="editSchoolyear">Schoolyear</label>
-                                <input type="text" class="form-control" id="editSchoolyear" name="Schoolyear" required>
+                                <label for="editTeacher_ID">Teacher_ID</label>
+                                <input type="text" class="form-control" id="editTeacher_ID" name="Teacher_ID" required>
                             </div>
                             </div>
                             <div class="form-group">
-                                <label for="editSemester">Semester</label>
-                                <input type="text" class="form-control" id="editSemester" name="Semester" required>
+                                <label for="editSubject_ID">Subject_ID</label>
+                                <input type="text" class="form-control" id="editSubject_ID" name="Subject_ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editClasstime">Classtime</label>
+                                <input type="text" class="form-control" id="editClasstime" name="Classtime" required>
                             </div>
 
                         </div>
-                        
-                
+                                 
                     <div class="card-action ms-auto me-auto" style="text-align: center;">
-                        <button type="submit" class="btn btn-success" name="editSchoolyear">Submit</button>
+                        <button type="submit" class="btn btn-success" name="editSchedule">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -163,15 +223,19 @@
 <!-- script for edit moda -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-    var editModal = document.getElementById("editSchoolyearModal");
+    var editModal = document.getElementById("editScheduleModal");
     editModal.addEventListener("show.bs.modal", function (event) {
         var button = event.relatedTarget;
     
-        document.getElementById("editSchoolyear").value = button.getAttribute("data-Schoolyear");
-        document.getElementById("editSemester").value = button.getAttribute("data-Semester");
+        document.getElementById("editSched_ID").value = button.getAttribute("data-Sched_ID");
+        document.getElementById("editTeacher_ID").value = button.getAttribute("data-Teacher_ID");
+        document.getElementById("editSubject_ID").value = button.getAttribute("data-Subject_ID");
+        document.getElementById("editClasstime").value = button.getAttribute("data-Classtime");
        
     });
 });
+
+
 
 </script>
 <!-- script for notif alert  -->
@@ -186,7 +250,7 @@
             text: "New student record created successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php"; // Removes message from URL
+            window.location.href = "Scheduleindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -194,7 +258,7 @@
             text: "Failed to create student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php";
+            window.location.href = "Scheduleindex.php";
         });
     }
     if (message === 'deleted') {
@@ -203,7 +267,7 @@
             text: "Student record deleted successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php"; // Removes message from URL
+            window.location.href = "Scheduleindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -211,7 +275,7 @@
             text: "Failed to delete student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php";
+            window.location.href = "Scheduleindex.php";
         });
     }
     if (message === 'updated') {
@@ -220,7 +284,7 @@
             text: "Student record updated successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php"; // Removes message from URL
+            window.location.href = "Scheduleindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -228,7 +292,7 @@
             text: "Failed to update student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php";
+            window.location.href = "Scheduleindex.php";
         });
     }
 
