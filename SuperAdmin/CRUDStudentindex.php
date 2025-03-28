@@ -68,6 +68,7 @@
                                         data-department='".$row["Department"]."'>
                                         <i class='fa fa-edit'></i>
                                       </a>";
+                                      
                                 echo "<a href='StudentController.php?user_id=".$row["User_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
                                 echo "<i class='fa fa-times'></i>";
                                 echo "</a>";

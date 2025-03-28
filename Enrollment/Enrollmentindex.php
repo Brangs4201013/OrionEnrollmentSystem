@@ -2,7 +2,7 @@
 <?php 
     include ('../Config/layout.php');
     ?>
-  
+
 
 
 
@@ -14,8 +14,8 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Enroll Student</h4>
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">Add a new Student</button>
+                    <h4 class="card-title">SchoolYear</h4>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSchoolyear">Add a new Student</button>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -25,50 +25,59 @@
                       >
                         <thead>
                           <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Department</th>
-                            <th>Type</th>
+                            <th>E_ID</th>
+                            <th>User_ID</th>
+                            <th>Schoolyr_ID	</th>
+                            <th>Subject_ID	</th>
+                            <th>Date</th>
+                            <th>Year</th>
+                            <th>Course_ID</th>
                             <th>Actions</th>
-                          
+                            
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
-                          <th>Name</th>
-                            <th>Email</th>
-                            <th>Department</th>
-                            <th>Type</th>
+                            <th>E_ID</th>
+                            <th>User_ID</th>
+                            <th>Schoolyr_ID	</th>
+                            <th>Subject_ID	</th>
+                            <th>Date</th>
+                            <th>Year</th>
+                            <th>Course_ID</th>
                             <th>Actions</th>
                           </tr>
                         </tfoot>
                         <tbody>
                             <?php
                             include ('../Config/connecttodb.php');
-                            $sql = "SELECT * FROM user WHERE type='student'";
+                            $sql = "SELECT * FROM Schoolyear";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<td>".$row["Fname"]." ".$row['Minitial']." ".$row['Lname']."</td>";
-                                echo "<td>".$row["Email"]."</td>";
-                                echo "<td>".$row["Department"]."</td>";
-                                echo "<td>".$row["Type"]."</td>";
+                                echo "<td>".$row["E_ID"]."</td>";
+                                echo "<td>".$row["User_ID"]."</td>";
+                                echo "<td>".$row["Schoolyr_ID"]."</td>";
+                                echo "<td>".$row["Subject_ID"]."</td>";
+                                echo "<td>".$row["Date"]."</td>";
+                                echo "<td>".$row["Year"]."</td>";
+                                echo "<td>".$row["Course_ID"]."</td>";
+                              
                                 echo "<td>";
-                                echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editUserModal' 
-                                        data-id='".$row["User_ID"]."' 
-                                        data-username='".$row["Username"]."' 
-                                        data-fname='".$row["Fname"]."' 
-                                        data-lname='".$row["Lname"]."' 
-                                        data-minitial='".$row["Minitial"]."' 
-                                        data-gender='".$row["Gender"]."' 
-                                        data-age='".$row["Age"]."' 
-                                        data-contact='".$row["Contact"]."' 
-                                        data-email='".$row["Email"]."' 
-                                        data-department='".$row["Department"]."'>
-                                        <i class='fa fa-edit'></i>
+                                echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editEnrollmentModal' 
+                                        data-Schoolyr_ID='".$row["E_ID"]."' 
+                                        data-Schoolyr_ID='".$row["User_ID"]."' 
+                                        data-Schoolyear='".$row["Schoolyr_ID"]."' 
+                                        data-Semester='".$row["Subject_ID"]."'>
+                                        data-Schoolyear='".$row["Date"]."' 
+                                        data-Schoolyear='".$row["Year"]."'
+                                        data-Semester='".$row["Course_ID"]."'>
+                                        <i class='fa fa-edit'></i>                                  
                                       </a>";
-                                echo "<a href='StudentController.php?user_id=".$row["User_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
+                                    
+
+                                echo "<a href='SchoolYearController.php?ENROLLMENT_id=".$row["E_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
                                 echo "<i class='fa fa-times'></i>";
                                 echo "</a>";
                                 echo "</td>";
@@ -91,70 +100,32 @@
     <!-- create Student Modal -->
      <!-- Bootstrap Modal -->
 <<!-- Bootstrap Modal -->
-<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal fade" id="addSchoolyear" tabindex="-1" aria-labelledby="addSchoolyearLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                <h5 class="modal-title" id="addSchoolyearLabel">Add New SchoolYear</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="StudentController.php" method="POST">
-                    <div class="row ">
-                        <div class="col-md-6">
+                <form action="SchoolYearController.php" method="POST">
+                    <div class="row">
+                        <div class="col-md-10 ms-auto me-auto">
+                       
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                                <label for="Schoolyear">Schoolyear</label>
+                                <input type="text" class="form-control" id="Schoolyear" name="Schoolyear" placeholder="Enter Schoolyear" required>
                             </div>
                             <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fname">First Name</label>
-                                <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter first name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lname">Last Name</label>
-                                <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter last name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="minitial">Middle Initial</label>
-                                <input type="text" class="form-control" id="minitial" name="minitial" placeholder="Enter middle initial">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <select class="form-control" id="gender" name="gender" required>
-                                    <option value="">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="age">Age</label>
-                                <input type="number" class="form-control" id="age" name="age" placeholder="Enter age" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact">Contact</label>
-                                <input type="text" class="form-control" id="contact" name="contact" placeholder="Enter contact number" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="department">Department</label>
-                                <input type="text" class="form-control" id="department" name="department" placeholder="Enter department" required>
+                                <label for="Semester">Semester</label>
+                                <input type="text" class="form-control" id="Semester" name="Semester" placeholder="Enter Semester" required>
                             </div>
                     
+                           
                         </div>
-
                     </div>
                     <div class="card-action ms-auto me-auto" style="text-align: center;">
-                        <button type="submit" class="btn btn-success" name="saveStudent">Submit</button>
+                        <button type="submit" class="btn btn-success" name="saveSchoolYear">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -164,68 +135,35 @@
 </div>
 <!-- end of create student modal -->
  <!-- Edit Student Modal -->
-<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="editSchoolyearModal" tabindex="-1" aria-labelledby="editSchoolYearLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Edit Student</h5>
+                <h5 class="modal-title" id="editSchoolYearLabel">Edit SchoolYear</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="update_user.php" method="POST">
-                    <input type="hidden" id="editUserID" name="user_id">
+                <form action="SchoolYearController.php" method="POST">
+                <input type="hidden" id="Schoolyr_ID" name="schoolyr_ID">
 
                     <div class="row">
                         <div class="col-md-6">
+                        
                             <div class="form-group">
-                                <label for="editUsername">Username</label>
-                                <input type="text" class="form-control" id="editUsername" name="username" required>
+                                <label for="editSchoolyear">Schoolyear</label>
+                                <input type="text" class="form-control" id="editSchoolyear" name="Schoolyear" required>
+                            </div>
                             </div>
                             <div class="form-group">
-                                <label for="editPassword">New Password (Leave blank to keep current)</label>
-                                <input type="password" class="form-control" id="editPassword" name="password">
+                                <label for="editSemester">Semester</label>
+                                <input type="text" class="form-control" id="editSemester" name="Semester" required>
                             </div>
-                            <div class="form-group">
-                                <label for="editFname">First Name</label>
-                                <input type="text" class="form-control" id="editFname" name="fname" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editLname">Last Name</label>
-                                <input type="text" class="form-control" id="editLname" name="lname" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editMinitial">Middle Initial</label>
-                                <input type="text" class="form-control" id="editMinitial" name="minitial">
-                            </div>
+
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="editGender">Gender</label>
-                                <select class="form-control" id="editGender" name="gender" required>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="editAge">Age</label>
-                                <input type="number" class="form-control" id="editAge" name="age" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editContact">Contact</label>
-                                <input type="text" class="form-control" id="editContact" name="contact" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editEmail">Email</label>
-                                <input type="email" class="form-control" id="editEmail" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editDepartment">Department</label>
-                                <input type="text" class="form-control" id="editDepartment" name="department" required>
-                            </div>
-                        </div>
-                    </div>
+                        
+                
                     <div class="card-action ms-auto me-auto" style="text-align: center;">
-                        <button type="submit" class="btn btn-success" name="editStudent">Submit</button>
+                        <button type="submit" class="btn btn-success" name="editSchoolyear">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -241,20 +179,13 @@
 <!-- script for edit moda -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-    var editModal = document.getElementById("editUserModal");
+    var editModal = document.getElementById("editSchoolyearModal");
     editModal.addEventListener("show.bs.modal", function (event) {
         var button = event.relatedTarget;
-        
-        document.getElementById("editUserID").value = button.getAttribute("data-id");
-        document.getElementById("editUsername").value = button.getAttribute("data-username");
-        document.getElementById("editFname").value = button.getAttribute("data-fname");
-        document.getElementById("editLname").value = button.getAttribute("data-lname");
-        document.getElementById("editMinitial").value = button.getAttribute("data-minitial");
-        document.getElementById("editGender").value = button.getAttribute("data-gender");
-        document.getElementById("editAge").value = button.getAttribute("data-age");
-        document.getElementById("editContact").value = button.getAttribute("data-contact");
-        document.getElementById("editEmail").value = button.getAttribute("data-email");
-        document.getElementById("editDepartment").value = button.getAttribute("data-department");
+    
+        document.getElementById("editSchoolyear").value = button.getAttribute("data-Schoolyear");
+        document.getElementById("editSemester").value = button.getAttribute("data-Semester");
+       
     });
 });
 
@@ -271,7 +202,7 @@
             text: "New student record created successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "Studentindex.php"; // Removes message from URL
+            window.location.href = "SchoolYearindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -279,7 +210,7 @@
             text: "Failed to create student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "Studentindex.php";
+            window.location.href = "SchoolYearindex.php";
         });
     }
     if (message === 'deleted') {
@@ -288,7 +219,7 @@
             text: "Student record deleted successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "Studentindex.php"; // Removes message from URL
+            window.location.href = "SchoolYearindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -296,7 +227,7 @@
             text: "Failed to delete student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "Studentindex.php";
+            window.location.href = "SchoolYearindex.php";
         });
     }
     if (message === 'updated') {
@@ -305,7 +236,7 @@
             text: "Student record updated successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "Studentindex.php"; // Removes message from URL
+            window.location.href = "SchoolYearindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -313,7 +244,7 @@
             text: "Failed to update student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "Studentindex.php";
+            window.location.href = "SchoolYearindex.php";
         });
     }
 
