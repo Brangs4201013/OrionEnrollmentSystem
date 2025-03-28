@@ -43,11 +43,11 @@ if(isset($_POST['editStudent'])){
         $Password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=?, Password=? WHERE User_ID=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssisisssi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $Password, $UserID);
+        $stmt->bind_param("sssssiisssi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $Password, $UserID);
     } else {
         $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=? WHERE User_ID=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssisissi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $UserID);
+        $stmt->bind_param("sssssiiss", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department);
     }
 
     if ($stmt->execute()) {

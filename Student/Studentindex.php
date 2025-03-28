@@ -172,7 +172,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="update_user.php" method="POST">
+                <form action="StudentController.php" method="POST">
                     <input type="hidden" id="editUserID" name="user_id">
 
                     <div class="row">
