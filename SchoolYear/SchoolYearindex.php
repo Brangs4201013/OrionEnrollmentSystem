@@ -43,7 +43,7 @@
                         <tbody>
                             <?php
                             include ('../Config/connecttodb.php');
-                            $sql = "SELECT * FROM Schoolyear";
+                            $sql = "SELECT * FROM schoolyear";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
@@ -96,15 +96,28 @@
                     <div class="row">
                         <div class="col-md-10 ms-auto me-auto">
                        
-                            <div class="form-group">
-                                <label for="Schoolyear">Schoolyear</label>
-                                <input type="text" class="form-control" id="Schoolyear" name="Schoolyear" placeholder="Enter Schoolyear" required>
+                        <div class="form-group">
+                                <label for="editSchoolyear">SchoolYear</label>
+                                <select class="form-control" id="editSchoolyear" name="Schoolyear" required>
+                                    <option value="2025 - 2026">2025 - 2026</option>
+                                    <option value="2026 - 2027">2026 - 2027</option>
+                                    <option value="2027 - 2028">2027 - 2028</option>
+                                    <option value="2028 - 2029">2028 - 2029</option>
+                                    <option value="2029 - 2030">2029 - 2030</option>
+
+                                </select>
                             </div>
+
+                            
                             <div class="form-group">
-                                <label for="Semester">Semester</label>
-                                <input type="text" class="form-control" id="Semester" name="Semester" placeholder="Enter Semester" required>
+                                <label for="editSemester">Semester</label>
+                                <select class="form-control" id="editSemester" name="Semester" required>
+                                    <option value="1st Semester">1st Semester</option>
+                                    <option value="2nd Semester">2nd Semester</option>
+                                    <option value="Summer">Summer</option>
+                                  
+                                </select>
                             </div>
-                    
                            
                         </div>
                     </div>
@@ -120,7 +133,7 @@
 <!-- end of create student modal -->
  <!-- Edit Student Modal -->
 <div class="modal fade" id="editSchoolyearModal" tabindex="-1" aria-labelledby="editSchoolYearLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editSchoolYearLabel">Edit SchoolYear</h5>
@@ -131,18 +144,30 @@
                 <input type="hidden" id="Schoolyr_ID" name="schoolyr_ID">
 
                     <div class="row">
-                        <div class="col-md-6">
+                    <div class="col-sm-10 ms-auto me-auto">
                         
-                            <div class="form-group">
-                                <label for="editSchoolyear">Schoolyear</label>
-                                <input type="text" class="form-control" id="editSchoolyear" name="Schoolyear" required>
+                        <div class="form-group">
+                                <label for="editSchoolyear">SchoolYear</label>
+                                <select class="form-control" id="editSchoolyear" name="Schoolyear" required>
+                                    <option value="2025 - 2026">2025 - 2026</option>
+                                    <option value="2026 - 2027">2026 - 2027</option>
+                                    <option value="2027 - 2028">2027 - 2028</option>
+                                    <option value="2028 - 2029">2028 - 2029</option>
+                                    <option value="2029 - 2030">2029 - 2030</option>
+
+                                </select>
                             </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="editSemester">Semester</label>
-                                <input type="text" class="form-control" id="editSemester" name="Semester" required>
                             </div>
 
+                            <div class="form-group">
+                                <label for="editSemester">Semester</label>
+                                <select class="form-control" id="editSemester" name="Semester" required>
+                                    <option value="1st Semester">1st Semester</option>
+                                    <option value="2nd Semester">2nd Semester</option>
+                                    <option value="Summer">Summer</option>
+                                  
+                                </select>
+                            </div>
                         </div>
                         
                 
