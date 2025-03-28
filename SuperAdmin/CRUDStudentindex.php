@@ -48,7 +48,7 @@
                                 echo "<td>".$row["Email"]."</td>";
                                 echo "<td>".$row["Department"]."</td>";
                                 echo "<td>".$row["Type"]."</td>";
-                                echo "<td>";
+                                echo "<td class='text-center'>";
                                 echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editUserModal' 
                                         data-id='".$row["User_ID"]."' 
                                         data-username='".$row["Username"]."' 
