@@ -12,7 +12,6 @@
       href="../assets/img/kaiadmin/favicon.ico"
       type="image/x-icon"
     />
-
     <script src="../assets/js/plugin/webfont/webfont.min.js"></script>\
     <script>
       WebFont.load({
@@ -31,7 +30,6 @@
         },
       });
     </script>
-
     <!-- CSS Files -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../assets/css/plugins.min.css" />
@@ -98,65 +96,38 @@
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
                 <h4 class="text-section">Components</h4>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'Studentindex.php' ? 'active' : ''; ?>">
+                      <a href="../Student/Studentindex.php">
                   <i class="fas fa-th-list"></i>
-                  <p>Sidebar Layouts</p>
-                  <span class="caret"></span>
+                  <p>Students</p>
                 </a>
-                <div class="collapse" id="sidebarLayouts">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="../sidebar-style-2.html">
-                        <span class="sub-item">Sidebar Style 2</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="../icon-menu.html">
-                        <span class="sub-item">Icon Menu</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#forms">
+              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'Subjectindex.php' ? 'active' : ''; ?>">
+              <a href="../Subject/Subjectindex.php">
                   <i class="fas fa-pen-square"></i>
-                  <p>Forms</p>
-                  <span class="caret"></span>
+                  <p>Subject</p>
                 </a>
-                <div class="collapse" id="forms">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="../forms/forms.html">
-                        <span class="sub-item">Basic Form</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#tables">
+              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'Enrollmentindex.php' ? 'active' : ''; ?>">
+              <a href="../Enrollment/Enrollmentindex.php">
                   <i class="fas fa-table"></i>
-                  <p>Tables</p>
-                  <span class="caret"></span>
+                  <p>Enrollment</p>
                 </a>
-                <div class="collapse" id="tables">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="../tables/tables.html">
-                        <span class="sub-item">Basic Table</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="../tables/datatables.html">
-                        <span class="sub-item">Datatables</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            
+                </li>
+                <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'Courseindex.php' ? 'active' : ''; ?>">
+              <a href="../Course/Courseindex.php">
+                  <i class="fas fa-table"></i>
+                  <p>Course</p>
+                </a>
+                </li>
+                <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'SchoolYearindex.php' ? 'active' : ''; ?>">
+              <a href="../SchoolYear/SchoolYearindex.php">
+                  <i class="fas fa-table"></i>
+                  <p>SchoolYear</p>
+                </a>
+                </li>
+
+               
              
 
             </ul>
