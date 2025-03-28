@@ -14,7 +14,7 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Student List</h4>
+                    <h4 class="card-title">Enroll Student</h4>
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">Add a new Student</button>
                   </div>
                   <div class="card-body">
