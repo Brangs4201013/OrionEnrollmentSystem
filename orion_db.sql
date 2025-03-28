@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2025 at 06:55 AM
+-- Generation Time: Mar 28, 2025 at 01:26 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,7 +46,8 @@ CREATE TABLE `enrollment` (
   `Subject_ID` int(11) NOT NULL,
   `Date` date NOT NULL,
   `Year` int(11) NOT NULL,
-  `Course_ID` int(11) NOT NULL
+  `Course_ID` int(11) NOT NULL,
+  `Sched_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -71,7 +72,7 @@ CREATE TABLE `invoice` (
   `Invoice_ID` int(11) NOT NULL,
   `User_ID` int(11) NOT NULL,
   `Total_Amount` int(11) NOT NULL,
-  `Due-date` int(11) NOT NULL,
+  `Due-date` date NOT NULL,
   `Status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -84,7 +85,7 @@ CREATE TABLE `invoice` (
 CREATE TABLE `payment` (
   `Payment_ID` int(11) NOT NULL,
   `Invoice_ID` int(11) NOT NULL,
-  `Paymentdate` int(11) NOT NULL,
+  `Paymentdate` date NOT NULL,
   `Amountpaid` int(11) NOT NULL,
   `Paymentmethod` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -124,8 +125,7 @@ CREATE TABLE `subject` (
   `Subject_ID` int(11) NOT NULL,
   `Subjectname` varchar(255) NOT NULL,
   `Subjectcode` varchar(255) NOT NULL,
-  `Subjectdesc` varchar(255) NOT NULL,
-  `Sched_ID` int(11) NOT NULL
+  `Subjectdesc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -148,6 +148,13 @@ CREATE TABLE `user` (
   `Department` varchar(255) NOT NULL,
   `Type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`User_ID`, `Username`, `Password`, `Fname`, `Lname`, `Minitial`, `Gender`, `Age`, `Contact`, `Email`, `Department`, `Type`) VALUES
+(2, 'Stephen', '$2y$10$E', '', '', '', '', 0, 0, '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -263,7 +270,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
