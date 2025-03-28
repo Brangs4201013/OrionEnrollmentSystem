@@ -100,7 +100,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="StudentController.php" method="POST">
+                <form action="UserController.php" method="POST">
                     <div class="row ">
                         <div class="col-md-6">
                             <div class="form-group">
