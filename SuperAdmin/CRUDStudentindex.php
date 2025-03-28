@@ -2,14 +2,8 @@
 <?php 
     include ('../Config/layout.php');
     ?>
-  
-
-
-
     <div class="container">
           <div class="page-inner">
-
-          
           <div class="row">
               <div class="col-md-12">
                 <div class="card">
