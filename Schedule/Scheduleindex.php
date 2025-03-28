@@ -158,9 +158,35 @@
                                 </select>
                             </div>
 
+                            
+                            <?php 
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'Classtime'";
+                                        $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='".$row["User_ID"]."'>".$row["User_ID"]."</option>";
+                                                }
+                                            } else {
+                                                echo "0 results";
+                                            }
+                                    ?>
                             <div class="form-group">
-                                <label for="Classtime">Classtime</label>
-                                <input type="text" class="form-control" id="Classtime" name="Classtime" placeholder="Enter Classtime" required>
+                                <label for="editTeacher_ID">Name</label>
+                                <select class="form-control" id="editTeacher_ID" name="Teacher_ID" required>
+                                <?php 
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'Teacher'";
+                                        $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='".$row["User_ID"]."'>".$row["Fname"]." ".$row['Minitial']." ". $row. "Lname"."</option>";
+                                                }
+                                            } else {
+                                                echo "<option value=''>No Teachers Available</option>";
+                                            }
+                                    ?>
+                                </select>
                             </div>
   
                         </div>
