@@ -51,7 +51,7 @@
                                         data-id='".$row["Subject_ID"]."' 
                                         data-Subjectname='".$row["Subjectname"]."' 
                                         data-Subjectcode='".$row["Subjectcode"]."' 
-                                        data-Subjectdesc='".$row["Subjectdesc"]."' 
+                                        data-Subjectdesc='".$row["Subjectdesc"]."' >
                                         <i class='fa fa-edit'></i>
                                       </a>";
                                 echo "<a href='SubjectController.php?Subject_ID=".$row["Subject_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
@@ -78,7 +78,7 @@
      <!-- Bootstrap Modal -->
 <<!-- Bootstrap Modal -->
 <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-MD modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addUserModalLabel">Add New Subject</h5>
@@ -87,7 +87,7 @@
             <div class="modal-body">
                 <form action="SubjectController.php" method="POST">
                     <div class="row ">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <div class="form-group">
                                 <label for="Subjectname">SubjectName</label>
                                 <input type="text" class="form-control" id="usernSubjectname" name="Subjectname" placeholder="Enter Subjectname" required>
@@ -99,22 +99,6 @@
                             <div class="form-group">
                                 <label for="Subjectdesc">Subjectdesc</label>
                                 <input type="text" class="form-control" id="Subjectdesc" name="Subjectdesc" placeholder="Enter Subject description" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Subjectname">SubjectName</label>
-                                <select class="form-control" id="Subjectname" name="Subjectname" required>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="Subjectcode">Subjectcode</label>
-                                <input type="number" class="form-control" id="Subjectcode" name="Subjectcode" placeholder="Enter Subjectcode" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="Subjectdesc">Subjectdesc</label>
-                                <input type="text" class="form-control" id="Subjectdesc" name="Subjectdesc" placeholder="Enter Subjectdesc" required>
                             </div>
                         </div>
 
