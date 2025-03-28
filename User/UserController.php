@@ -21,7 +21,7 @@ if(isset($_POST['saveUser'])){
     $stmt->bind_param("ssssssissss", $Username, $Password, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $Type);
 
     if ($stmt->execute()) {
-        header("Location: Studentindex.php?message=created");
+        header("Location: Userindex.php?message=created");
     } else {
         echo "Error: " . $stmt->error;
     }
