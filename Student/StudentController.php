@@ -48,7 +48,11 @@ if(isset($_POST['editStudent'])){
     } else {
         $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=? WHERE User_ID=?";
         $stmt = $conn->prepare($sql);
+<<<<<<< HEAD
         $stmt->bind_param("sssssiisssi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $UserID);
+=======
+        $stmt->bind_param("sssssiiss", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department);
+>>>>>>> 966ffbc240209c5e1b0169d457223d322c87e131
     }
 
     if ($stmt->execute()) {
