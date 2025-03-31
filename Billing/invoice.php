@@ -37,7 +37,7 @@ include ('../Config/layout.php');
                             <th>Actions</th>
                           </tr>
                         </tfoot>
-                        <!-- <tbody>
+                        <tbody>
                             <?php
                             include ('../Config/connecttodb.php');
                            $sql = "SELECT * FROM user INNER JOIN invoice ON user.User_ID = invoice.User_ID WHERE user.type='student'";
@@ -47,24 +47,35 @@ include ('../Config/layout.php');
                                 echo "<tr>";
                                 echo "<td>".$row["Fname"]."  ".$row['Lname']." ".$row['Minitial']."</td>";
                                 echo "<td>".$row["Total_Amount"]."</td>";
-                                echo "<td>".$row["Due-date"]."</td>";
+                                echo "<td>".$row["Due_date"]."</td>";
                                 echo "<td>".$row["Status"]."</td>";
+                                echo "<td>";
+                                echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editUserModal' 
+                                        data-id='".$row["User_ID"]."' 
+                                        data-username='".$row["Username"]."' 
+                                        data-fname='".$row["Fname"]."' 
+                                        data-lname='".$row["Lname"]."' 
+                                        data-minitial='".$row["Minitial"]."' 
+                                        data-gender='".$row["Gender"]."' 
+                                        data-age='".$row["Age"]."' 
+                                        data-contact='".$row["Contact"]."' 
+                                        data-email='".$row["Email"]."' 
+                                        data-department='".$row["Department"]."'>
+                                        <i class='icon-book-open  '></i>
+                                      </a>";
+                                echo "</td>";
                                 echo "</tr>";
-                                }
+                                 }
                             } else {
                                 echo "0 results";
                             }
-                            $conn->close();
-
                             ?>
                         
-                          </tbody> -->
+                          </tbody>
                         </table>
                         </div>
                  </div>
-        </div>
-
-
+        </div>  
     <!-- create Student Modal -->
      <!-- Bootstrap Modal -->
 <<!-- Bootstrap Modal -->
@@ -81,8 +92,8 @@ include ('../Config/layout.php');
                     <div class="col-md-6">
                    <div class="form-group">      
     <label for="Student">Student</label>
-    <select class="form-control" id="Student" name="Student">
-        <option value=" ">Select Student</option>
+    <select class="form-control" id="User_ID" name="User_ID">
+        <option value=" ">Select Student</option>             
         <?php
          include '../Config/connecttodb.php';
          $sql = "SELECT * FROM user WHERE type ='student'";
@@ -100,8 +111,8 @@ include ('../Config/layout.php');
                                 <input type="number" class="form-control" id="Total_Amount" name="Total_Amount" placeholder="Enter Total_Amount" required>
                             </div>
                             <div class="form-group">
-                                <label for="Due Date">Due Date</label>
-                                <input type="text" class="form-control" id="Due Date" name="Due Date" placeholder="Enter Due Date" required>
+                                <label for="Due_date">Due Date</label>
+                                <input type="text" class="form-control" id="Due_date" name="Due_date" placeholder="Enter Due Date" required>
                             </div>
                             <div class="form-group">
                                 <label for="Status">Status</label>
@@ -120,11 +131,13 @@ include ('../Config/layout.php');
     </div>
 </div>
 <!-- end of create student modal -->
+
+
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Edit Student</h5>
+                <h5 class="modal-title" id="editUserModalLabel">View Student</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
