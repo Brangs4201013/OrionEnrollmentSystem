@@ -1,3 +1,9 @@
+<?php
+session_start(); // Start the session
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -70,13 +76,8 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
           <div class="sidebar-content">
             <ul class="nav nav-secondary">
-              <li class="nav-item">
-                <a
-                  data-bs-toggle="collapse"
-                  href="#dashboard"
-                  class="collapsed"
-                  aria-expanded="false"
-                >
+              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
+                <a href="../Config/dashboard.php">
                   <i class="fas fa-home"></i>
                   <p>Dashboard</p>
                 </a>
@@ -278,7 +279,7 @@
                             </div>
                             <div class="notif-content">
                               <span class="subject">Talha</span>
-                              <span class="block"> Hi, Apa Kabar ? </span>
+                              <span class="block"> Hi, <?php echo $_SESSION['Username'];?> </span>
                               <span class="time">17 minutes ago</span>
                             </div>
                           </a>
@@ -465,7 +466,7 @@
                     </div>
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
+                      <span class="fw-bold"> <?php echo $_SESSION['Username'];?> </span></span>
                     </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -480,10 +481,10 @@
                             />
                           </div>
                           <div class="u-text">
-                            <h4>Hizrian</h4>
+                            <h4> <?php echo $_SESSION['Username'];?></h4>
                             <p class="text-muted">hello@example.com</p>
                             <a
-                              href="profile.html"
+                              href="../Admin/login.php"
                               class="btn btn-xs btn-secondary btn-sm"
                               >View Profile</a
                             >
@@ -498,7 +499,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="../Admin/logout.php">Logout</a>
                       </li>
                     </div>
                   </ul>
@@ -506,10 +507,13 @@
               </ul>
             </div>
           </nav>
-          <!-- End Navbar -->
-           
 
+          <!-- End Navbar -->
+
+          
         </div>
+
+        
     </body>
 
     <!--   Core JS Files   -->
