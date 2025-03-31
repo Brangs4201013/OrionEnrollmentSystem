@@ -1,42 +1,51 @@
+
+
 <?php 
 include '../Config/connecttodb.php';
- if(isset($_POST['SavePayment'])){
-        $Invoice_ID = $_POST['Invoice_ID'];
-        $Paymentdate = $_POST['Paymentdate'];
-        $Amountpaid = $_POST['Amountpaid'];
-        $Paymentmethod = $_POST['Paymentmethod'];
-        $sql = "INSERT INTO payment (Invoice_ID, Payment_Date, Amount_Paid, Payment_Method)
-         VALUES ('$Invoice_ID', '$Paymentdate', '$Amountpaid', '$Paymentmethod')";
-        if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
+
+if(isset($_POST['viewStudent'])){
+    $User_ID = $_POST['User_ID'];
+    $sql = "SELECT * FROM user WHERE User_ID='$User_ID'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "ID: " . $row["User_ID"]. " - Name: " . $row["Fname"]. " " . $row["Lname"]. "<br>";
+        }
+    } else {
+        echo "0 results";
+    }
+}
+
+
+if(isset($_POST['saveStudent'])){
+    $User_ID = $_POST['User_ID'];
+    $Total_Amount = $_POST['Total_Amount'];
+    $Due_date = $_POST['Due_date'];
+    $Status = $_POST['Status'];
+    $sql = "INSERT INTO invoice (User_ID,Total_Amount, Due_date, Status)
+         VALUES ('$User_ID','$Total_Amount', '$Due_date', '$Status')";
+         if ($conn->query($sql) === TRUE) {
+            header("Location: invoice.php");
+            
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
-    }
-    $conn->close();
-    header("Location: invoice.php");
-    exit();
-?>
-
-<?php 
-include '../Config/connecttodb.php';
-
-if(isset($_POST['saveStudent'])){
-    $Paymentdate = $_POST['Paymentdate'];
-    $Amountpaid = $_POST['Amountpaid'];
-    $Paymentmethod = $_POST['Paymentmethod'];
-    $sql = "INSERT INTO invoice ( Paymentdate, Amountpaid, Paymentmethod)
-         VALUES ('$Paymentdate', '$Amountpaid', '$Paymentmethod')";
-         
-         $stmt = $conn->prepare($sql);
-    $stmt->bind_param('iis', '$Paymentdate', '$Amountpaid', '$Paymentmethod');
-
-    if ($stmt->execute()) {
-        header("Location: invoice.php?message=created");
-    } else {
-        echo "Error: " . $stmt->error;
-    }
+        
 }
+
+if(isset($_POST['SavePayment'])){
+            $Invoice_ID = $_POST['Invoice_ID'];
+            $Paymentdate = $_POST['Paymentdate'];
+            $Amountpaid = $_POST['Amountpaid'];
+            $Paymentmethod = $_POST['Paymentmethod'];
+            $sql = "INSERT INTO payment (Invoice_ID, Paymentdate, Amountpaid, Paymentmethod)
+             VALUES ('$Invoice_ID', '$Paymentdate', '$Amountpaid', '$Paymentmethod')";
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
 
 if(isset($_POST['editStudent'])){
     $UserID = $_POST['user_id'];
