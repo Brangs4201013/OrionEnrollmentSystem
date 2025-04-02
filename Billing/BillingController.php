@@ -1,5 +1,3 @@
-
-
 <?php 
 include '../Config/connecttodb.php';
 
@@ -15,8 +13,6 @@ if(isset($_POST['viewStudent'])){
         echo "0 results";
     }
 }
-
-
 if(isset($_POST['saveStudent'])){
     $User_ID = $_POST['User_ID'];
     $Total_Amount = $_POST['Total_Amount'];
@@ -29,10 +25,49 @@ if(isset($_POST['saveStudent'])){
             
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
+        }      
+}
+// view student
+if(isset($_POST['viewStudent'])){
+    $User_ID = $_POST['User_ID'];
+    $sql = "SELECT * FROM user WHERE User_ID='$User_ID'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "ID: " . $row["User_ID"]. " - Name: " . $row["Fname"]. " " . $row["Lname"]. "<br>";
         }
-        
+    } else {
+        echo "0 results";
+    }
+}
+// payment
+if(isset($_POST['viewPayment'])){
+    $Invoice_ID = $_POST['Invoice_ID'];
+    $sql = "SELECT * FROM payment WHERE Invoice_ID='$Invoice_ID'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "ID: " . $row["Invoice_ID"]. " - Amount: " . $row["Amountpaid"]. "<br>";
+        }
+    } else {
+        echo "0 results";
+    }
 }
 
+// view invoice
+if(isset($_POST['viewInvoice'])){
+    $User_ID = $_POST['User_ID'];
+    $sql = "SELECT * FROM invoice WHERE User_ID='$User_ID'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "ID: " . $row["Invoice_ID"]. " - Amount: " . $row["Total_Amount"]. "<br>";
+        }
+    } else {
+        echo "0 results";
+    }
+}
+// Save Payment
 if(isset($_POST['SavePayment'])){
             $Invoice_ID = $_POST['Invoice_ID'];
             $Paymentdate = $_POST['Paymentdate'];
@@ -46,36 +81,20 @@ if(isset($_POST['SavePayment'])){
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
         }
-
-if(isset($_POST['editStudent'])){
-    $UserID = $_POST['user_id'];
-    $Username = $_POST['username'];
-    $Fname = $_POST['fname'];
-    $Lname = $_POST['lname'];
-    $Minitial = $_POST['minitial'];
-    $Gender = $_POST['gender'];
-    $Age = $_POST['age'];
-    $Contact = $_POST['contact'];
-    $Email = $_POST['email'];
-    $Department = $_POST['department'];
-
-    if (!empty($_POST['password'])) {
-        $Password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=?, Password=? WHERE User_ID=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssisisssi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $Password, $UserID);
+// Update Payment
+if(isset($_POST['UpdatePayment'])){
+    $Invoice_ID = $_POST['Invoice_ID'];
+    $Paymentdate = $_POST['Paymentdate'];
+    $Amountpaid = $_POST['Amountpaid'];
+    $Paymentmethod = $_POST['Paymentmethod'];
+    $sql = "UPDATE payment SET Paymentdate='$Paymentdate', Amountpaid='$Amountpaid', Paymentmethod='$Paymentmethod' WHERE Invoice_ID='$Invoice_ID'";
+    if ($conn->query($sql) === TRUE) {
+        echo "Record updated successfully";
     } else {
-        $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=? WHERE User_ID=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssisissi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $UserID);
-    }
-
-    if ($stmt->execute()) {
-        header("Location: invoice.php?message=updated");
-    } else {
-        echo "Error: " . $stmt->error;
+        echo "Error updating record: " . $conn->error;
     }
 }
+
 
 if (isset($_GET['user_id'])) {
     $id = intval($_GET['user_id']); // Convert to integer to prevent SQL injection
