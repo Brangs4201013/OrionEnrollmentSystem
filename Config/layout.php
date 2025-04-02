@@ -79,17 +79,7 @@
                 >
                   <i class="fas fa-home"></i>
                   <p>Dashboard</p>
-                  <span class="caret"></span>
                 </a>
-                <div class="collapse" id="dashboard">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="../../demo1/index.html">
-                        <span class="sub-item">Dashboard 1</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li class="nav-section">
                 <span class="sidebar-mini-icon">
@@ -517,6 +507,7 @@
             </div>
           </nav>
           <!-- End Navbar -->
+           
 
         </div>
     </body>
@@ -559,3 +550,18 @@
     <!-- <script src="../assets/js/demo.js"></script> -->
     </html>
 
+    <script>
+    // Check if there is a message in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+
+    if (message === 'login') {
+        swal({
+            title: "Success!",
+            text: "Welcome to Orion Enrollment System!",
+            icon: "success"
+        }).then(() => {
+            window.location.href = "../Config/layout.php"; // Removes message from URL
+        });
+    }
+</script>
