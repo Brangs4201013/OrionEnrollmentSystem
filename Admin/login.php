@@ -5,40 +5,53 @@ session_regenerate_id(true);
 include '../Config/connecttodb.php';
 
 $message = "";
-$loggedInUser = "";
 
-if (!isset($conn)) {
-    die("<p style='color:red; text-align:center;'>Database connection error!</p>");
+if (!$conn) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Handling Login Submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Username'])) {
     $Username = trim($_POST['Username']);
     $Password = trim($_POST['Password']);
 
-    $stmt = $conn->prepare("SELECT Password FROM user WHERE Username = ?");
-    if ($stmt) {
-        $stmt->bind_param("s", $Username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    if (!empty($Username) && !empty($Password)) {
+        $stmt = $conn->prepare("SELECT Password FROM user WHERE LOWER(Username) = LOWER(?)");
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            if (password_verify($Password, $row['Password'])) {
-                $_SESSION['Username'] = $Username;
-                header("Location: dashboard.php");
-                exit();
+        if ($stmt) {
+            $stmt->bind_param("s", $Username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+
+                // Debugging: Print password hash
+                echo "<p>Stored Hash: " . htmlspecialchars($row['Password']) . "</p>";
+                echo "<p>Entered Password: " . htmlspecialchars($Password) . "</p>";
+
+                if (password_verify($Password, $row['Password'])) {
+                    echo "<p style='color:green;'>✅ Password matched!</p>";
+                    $_SESSION['Username'] = $Username;
+                    header("Location: ../Config/layout.php?message=login");
+                    exit();
+                } else {
+                    echo "<p style='color:red;'>❌ Password did not match!</p>";
+                }
             } else {
-                $message = "<p style='color:red; text-align:center;'>Invalid password!</p>";
+                echo "<p style='color:red;'>❌ Username not found!</p>";
             }
+            $stmt->close();
         } else {
-            $message = "<p style='color:red; text-align:center;'>Username not found!</p>";
+            echo "<p style='color:red;'>❌ Database query error!</p>";
         }
-        $stmt->close();
+    } else {
+        echo "<p style='color:red;'>❌ Please fill in all fields!</p>";
     }
 }
 $conn->close();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -134,17 +147,19 @@ $conn->close();
     <div class="login-box">
         <h2>Login</h2>
         <?php echo $message; ?>
-        <form id="authForm" action="" method="post">
+        <form id="authForm" action="login.php" method="post">
             <input type="text" name="Username" placeholder="Username" required><br>
             <div class="password-container">
                 <input type="password" name="Password" id="password" placeholder="Password" required>
                 <span class="toggle-password" id="toggleIcon" onclick="togglePassword()">👁️‍🗨️</span>
             </div>
             <br>
-            <button type="submit">Login</button>
+            <button type="submit" name="login">Login</button>
         </form>
+        <p>Don't have an account? <a href="../User/Userindex.php" style="color: #4CAF50;">Create one</a></p>
     </div>
 </div>
+
 
 <script>
     function togglePassword() {
