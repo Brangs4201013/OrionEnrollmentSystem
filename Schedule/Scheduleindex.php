@@ -116,7 +116,7 @@
 
                       
                             <div class="form-group">
-                                <label for="editSubject_ID">SUBJECT_ID</label>
+                                <label for="editSubject_ID">Subject_ID</label>
                                 <select class="form-control" id="editSubject_ID" name="Subject_ID" required>
                                 <option value="">Select Subject</option>
                                 <?php 
@@ -138,21 +138,21 @@
                                 <label for="editClasstime">Classtime</label>
                                 <select class="form-control" id="editClasstime" name="Classtime" required>
                                     <option value="">Select Class Time</option>
-                                    <option value="MWF: 7:30 - 8:30">MWF: 7:30 - 8:30</option>
-                                    <option value="MWF: 8:30 - 9:30">MWF: 8:30 - 9:30</option>
-                                    <option value="MWF: 9:30 - 10:30">MWF: 9:30 - 10:30</option>
-                                    <option value="MWF: 10:30 - 11:30">MWF: 10:30 - 11:30</option>
-                                    <option value="MWF: 10:30 - 11:30">MWF: 11:30 - 12:30</option>
-                                    <option value="MWF: 1:00 - 2:00">MWF: 1:00 - 2:00</option>
-                                    <option value="MWF: 2:00 - 3:00">MWF: 2:00 - 3:00</option>
-                                    <option value="MWF: 3:00 - 4:00">MWF: 3:00 - 4:00</option>
-                                    <option value="MWF: 4:00 - 5:30">MWF: 4:00 - 5:30</option>
-                                    <option value="TTH: 7:30 - 8:30">TTH: 7:30 - 9:00</option>
-                                    <option value="TTH: 8:30 - 9:30">TTH: 9:00 - 10:30</option>
-                                    <option value="TTH: 9:30 - 10:30">TTH: 10:30 - 12:00</option>
-                                    <option value="TTH: 10:30 - 11:30">TTH: 1:00 - 2:30</option>
-                                    <option value="TTH: 11:30 - 12:00">TTH: 2:30 - 4:00</option>
-                                    <option value="TTH: 1:00 - 2:00">TTH: 4:00 - 5:30</option>
+                                    <option value="MWF: 7:30 AM - 8:30 AM">MWF: 7:30 AM - 8:30 AM</option>
+                                    <option value="MWF: 8:30 AM - 9:30 AM">MWF: 8:30 AM - 9:30 AM</option>
+                                    <option value="MWF: 9:30 AM - 10:30 AM">MWF: 9:30 AM - 10:30 AM</option>
+                                    <option value="MWF: 10:30 AM - 11:30 AM">MWF: 10:30 AM - 11:30 AM</option>
+                                    <option value="MWF: 10:30 AM - 12:30 PM">MWF: 11:30 AM - 12:30 PM</option>
+                                    <option value="MWF: 1:00 PM - 2:00 PM">MWF: 1:00 PM - 2:00 PM</option>
+                                    <option value="MWF: 2:00 PM - 3:00 PM">MWF: 2:00 PM - 3:00 PM</option>
+                                    <option value="MWF: 3:00 PM - 4:00 PM">MWF: 3:00 PM - 4:00 PM</option>
+                                    <option value="MWF: 4:00 PM - 5:30 PM">MWF: 4:00 PM - 5:30 PM</option>
+                                    <option value="TTH: 7:30 AM - 9:00 AM">TTH: 7:30 AM - 9:00 AM</option>
+                                    <option value="TTH: 9:00 AM - 10:30 AM">TTH: 9:00 AM - 10:30 AM</option>
+                                    <option value="TTH: 10:30 AM - 12:00 PM">TTH: 10:30 AM  - 12:00 PM</option>
+                                    <option value="TTH: 1:00 PM - 2:30 PM">TTH: 1:00 PM - 2:30 PM</option>
+                                    <option value="TTH: 2:30 PM - 4:00 PM">TTH: 2:30 PM - 4:00 PM</option>
+                                    <option value="TTH: 4:00 PM - 5:30 PM">TTH: 4:00 PM - 5:30 PM</option>
                                    
 
                                 
@@ -205,7 +205,7 @@
                             </div>
                             </div>
                             <div class="form-group">
-                                <label for="editSubject_ID">SUBJECT_ID</label>
+                                <label for="editSubject_ID">Subject_ID</label>
                                 <select class="form-control" id="editSubject_ID" name="Subject_ID" required>
                                 <option value="">Select Subject</option>
                                 <?php 
@@ -214,7 +214,7 @@
                                         $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo "<option value='".$row["Subject_ID"]."'>".$row["Subject_ID"]."</option>";
+                                                    echo "<option value='".$row["Subject_ID"]."'>".$row["Subject_ID"].$row['Subjectcode']." - ".$row['Subjectdesc']."</option>";
                                                 }
                                             } else {
                                                 echo "<option value=''>No Subject Available</option>";
@@ -226,21 +226,21 @@
                                 <label for="editClasstime">Classtime</label>
                                 <select class="form-control" id="editClasstime" name="Classtime" required>
                                     <option value="">Select Class Time</option>
-                                    <option value="MWF: 7:30 - 8:30">MWF: 7:30 - 8:30</option>
-                                    <option value="MWF: 8:30 - 9:30">MWF: 8:30 - 9:30</option>
-                                    <option value="MWF: 9:30 - 10:30">MWF: 9:30 - 10:30</option>
-                                    <option value="MWF: 10:30 - 11:30">MWF: 10:30 - 11:30</option>
-                                    <option value="MWF: 10:30 - 11:30">MWF: 11:30 - 12:30</option>
-                                    <option value="MWF: 1:00 - 2:00">MWF: 1:00 - 2:00</option>
-                                    <option value="MWF: 2:00 - 3:00">MWF: 2:00 - 3:00</option>
-                                    <option value="MWF: 3:00 - 4:00">MWF: 3:00 - 4:00</option>
-                                    <option value="MWF: 4:00 - 5:30">MWF: 4:00 - 5:30</option>
-                                    <option value="TTH: 7:30 - 8:30">TTH: 7:30 - 9:00</option>
-                                    <option value="TTH: 8:30 - 9:30">TTH: 9:00 - 10:30</option>
-                                    <option value="TTH: 9:30 - 10:30">TTH: 10:30 - 12:00</option>
-                                    <option value="TTH: 10:30 - 11:30">TTH: 1:00 - 2:30</option>
-                                    <option value="TTH: 11:30 - 12:00">TTH: 2:30 - 4:00</option>
-                                    <option value="TTH: 1:00 - 2:00">TTH: 4:00 - 5:30</option>
+                                    <option value="MWF: 7:30 AM - 8:30 AM">MWF: 7:30 AM - 8:30 AM</option>
+                                    <option value="MWF: 8:30 AM - 9:30 AM">MWF: 8:30 AM - 9:30 AM</option>
+                                    <option value="MWF: 9:30 AM - 10:30 AM">MWF: 9:30 AM - 10:30 AM</option>
+                                    <option value="MWF: 10:30 AM - 11:30 AM">MWF: 10:30 AM - 11:30 AM</option>
+                                    <option value="MWF: 10:30 AM - 12:30 PM">MWF: 11:30 AM - 12:30 PM</option>
+                                    <option value="MWF: 1:00 PM - 2:00 PM">MWF: 1:00 PM - 2:00 PM</option>
+                                    <option value="MWF: 2:00 PM - 3:00 PM">MWF: 2:00 PM - 3:00 PM</option>
+                                    <option value="MWF: 3:00 PM - 4:00 PM">MWF: 3:00 PM - 4:00 PM</option>
+                                    <option value="MWF: 4:00 PM - 5:30 PM">MWF: 4:00 PM - 5:30 PM</option>
+                                    <option value="TTH: 7:30 AM - 9:00 AM">TTH: 7:30 AM - 9:00 AM</option>
+                                    <option value="TTH: 9:00 AM - 10:30 AM">TTH: 9:00 AM - 10:30 AM</option>
+                                    <option value="TTH: 10:30 AM - 12:00 PM">TTH: 10:30 AM  - 12:00 PM</option>
+                                    <option value="TTH: 1:00 PM - 2:30 PM">TTH: 1:00 PM - 2:30 PM</option>
+                                    <option value="TTH: 2:30 PM - 4:00 PM">TTH: 2:30 PM - 4:00 PM</option>
+                                    <option value="TTH: 4:00 PM - 5:30 PM">TTH: 4:00 PM - 5:30 PM</option>
                                     
                                    
 
