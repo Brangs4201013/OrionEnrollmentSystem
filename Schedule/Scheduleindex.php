@@ -2,10 +2,6 @@
 <?php 
     include ('../Config/layout.php');
     ?>
-   
-
-
-
     <div class="container">
           <div class="page-inner">
 
@@ -14,7 +10,7 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">SCHEDULE</h4>
+                    <h4 class="card-title">Schedule</h4>
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSchedule">Add a new Schedule</button>
                   </div>
                   <div class="card-body">
@@ -99,18 +95,20 @@
                         <div class="col-md-10 ms-auto me-auto">
                     
                             <div class="form-group">
-                                <label for="editTeacher_ID">Name</label>
+                                <label for="editTeacher_ID">Instructor</label>
                                 <select class="form-control" id="editTeacher_ID" name="Teacher_ID" required>
+                                <option value="">Select Instructor</option>
                                 <?php 
                                     include ('../Config/connecttodb.php');
                                     $sql = "SELECT * FROM user WHERE Type = 'Teacher'";
                                         $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo "<option value='".$row["User_ID"]."'>".$row["Fname"]." ".$row['Minitial']." ". $row. "Lname"."</option>";
+                                                    echo "<option value='".$row['User_ID']."'>".$row['Fname']." ".$row['Minitial']." ". $row['Lname']."</option>";
                                                 }
                                             } else {
-                                                echo "<option value=''>No Teachers Available</option>";
+                                                echo "<option value=''> Teacher </option>";
+                                            
                                             }
                                     ?>
                                 </select>
@@ -120,17 +118,16 @@
                             <div class="form-group">
                                 <label for="editSubject_ID">SUBJECT_ID</label>
                                 <select class="form-control" id="editSubject_ID" name="Subject_ID" required>
+                                <option value="">Select Subject</option>
                                 <?php 
                                     include ('../Config/connecttodb.php');
-                                    $sql = "SELECT * FROM user WHERE Type = 'subject'";
+                                    $sql = "SELECT * FROM subject";
                                         $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo "<option value='".$row["Subject_ID"]."'>".$row["Subject_ID"]."</option>";
+                                                    echo "<option value='".$row['Subject_ID']."'>".$row['Subjectcode']." - ".$row['Subjectdesc']."</option>";
                                                 }
-                                            } else {
-                                                echo "<option value=''>No Teachers Available</option>";
-                                            }
+                                            } 
                                     ?>
                                 </select>
                             </div>
@@ -140,14 +137,22 @@
                             <div class="form-group">
                                 <label for="editClasstime">Classtime</label>
                                 <select class="form-control" id="editClasstime" name="Classtime" required>
+                                    <option value="">Select Class Time</option>
                                     <option value="MWF: 7:30 - 8:30">MWF: 7:30 - 8:30</option>
                                     <option value="MWF: 8:30 - 9:30">MWF: 8:30 - 9:30</option>
                                     <option value="MWF: 9:30 - 10:30">MWF: 9:30 - 10:30</option>
                                     <option value="MWF: 10:30 - 11:30">MWF: 10:30 - 11:30</option>
-                                    <option value="TTH: 10:30 - 12:00">TTH: 10:30 - 12:00</option>
-                                    <option value="TTH: 1:00 - 2:00">TTH: 1:00 - 2:00</option>
-                                    <option value="TTH: 4:00 - 5:30">TTH: 4:00 - 5:30</option>
-                                    
+                                    <option value="MWF: 10:30 - 11:30">MWF: 11:30 - 12:30</option>
+                                    <option value="MWF: 1:00 - 2:00">MWF: 1:00 - 2:00</option>
+                                    <option value="MWF: 2:00 - 3:00">MWF: 2:00 - 3:00</option>
+                                    <option value="MWF: 3:00 - 4:00">MWF: 3:00 - 4:00</option>
+                                    <option value="MWF: 4:00 - 5:30">MWF: 4:00 - 5:30</option>
+                                    <option value="TTH: 7:30 - 8:30">TTH: 7:30 - 9:00</option>
+                                    <option value="TTH: 8:30 - 9:30">TTH: 9:00 - 10:30</option>
+                                    <option value="TTH: 9:30 - 10:30">TTH: 10:30 - 12:00</option>
+                                    <option value="TTH: 10:30 - 11:30">TTH: 1:00 - 2:30</option>
+                                    <option value="TTH: 11:30 - 12:00">TTH: 2:30 - 4:00</option>
+                                    <option value="TTH: 1:00 - 2:00">TTH: 4:00 - 5:30</option>
                                    
 
                                 
@@ -178,20 +183,19 @@
             <div class="modal-body">
                 <form action="ScheduleController.php" method="POST">
                 <input type="hidden" id="Sched_ID" name="Sched_ID">
-
-                    <div class="row">
+                <div class="row">
                     <div class="col-sm-10 ms-auto me-auto">
-                        
                     <div class="form-group">
                                 <label for="editTeacher_ID">Name</label>
                                 <select class="form-control" id="editTeacher_ID" name="Teacher_ID" required>
+                                <option value="">Select Instructor</option>
                                 <?php 
                                     include ('../Config/connecttodb.php');
                                     $sql = "SELECT * FROM user WHERE Type = 'Teacher'";
                                         $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo "<option value='".$row["User_ID"]."'>".$row["Fname"]." ".$row['Minitial']." ". $row. "Lname"."</option>";
+                                                    echo "<option value='".$row["User_ID"]."'>".$row['Fname']." ".$row['Minitial']." ". $row['Lname']." "."</option>";
                                                 }
                                             } else {
                                                 echo "<option value=''>No Teachers Available</option>";
@@ -203,31 +207,40 @@
                             <div class="form-group">
                                 <label for="editSubject_ID">SUBJECT_ID</label>
                                 <select class="form-control" id="editSubject_ID" name="Subject_ID" required>
+                                <option value="">Select Subject</option>
                                 <?php 
                                     include ('../Config/connecttodb.php');
-                                    $sql = "SELECT * FROM user WHERE Type = 'subject'";
+                                    $sql = "SELECT * FROM subject";
                                         $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
                                                     echo "<option value='".$row["Subject_ID"]."'>".$row["Subject_ID"]."</option>";
                                                 }
                                             } else {
-                                                echo "<option value=''>No Teachers Available</option>";
+                                                echo "<option value=''>No Subject Available</option>";
                                             }
                                     ?>
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <label for="editClasstime">Classtime</label>
                                 <select class="form-control" id="editClasstime" name="Classtime" required>
+                                    <option value="">Select Class Time</option>
                                     <option value="MWF: 7:30 - 8:30">MWF: 7:30 - 8:30</option>
                                     <option value="MWF: 8:30 - 9:30">MWF: 8:30 - 9:30</option>
                                     <option value="MWF: 9:30 - 10:30">MWF: 9:30 - 10:30</option>
                                     <option value="MWF: 10:30 - 11:30">MWF: 10:30 - 11:30</option>
-                                    <option value="TTH: 10:30 - 12:00">TTH: 10:30 - 12:00</option>
-                                    <option value="TTH: 1:00 - 2:00">TTH: 1:00 - 2:00</option>
-                                    <option value="TTH: 4:00 - 5:30">TTH: 4:00 - 5:30</option>
+                                    <option value="MWF: 10:30 - 11:30">MWF: 11:30 - 12:30</option>
+                                    <option value="MWF: 1:00 - 2:00">MWF: 1:00 - 2:00</option>
+                                    <option value="MWF: 2:00 - 3:00">MWF: 2:00 - 3:00</option>
+                                    <option value="MWF: 3:00 - 4:00">MWF: 3:00 - 4:00</option>
+                                    <option value="MWF: 4:00 - 5:30">MWF: 4:00 - 5:30</option>
+                                    <option value="TTH: 7:30 - 8:30">TTH: 7:30 - 9:00</option>
+                                    <option value="TTH: 8:30 - 9:30">TTH: 9:00 - 10:30</option>
+                                    <option value="TTH: 9:30 - 10:30">TTH: 10:30 - 12:00</option>
+                                    <option value="TTH: 10:30 - 11:30">TTH: 1:00 - 2:30</option>
+                                    <option value="TTH: 11:30 - 12:00">TTH: 2:30 - 4:00</option>
+                                    <option value="TTH: 1:00 - 2:00">TTH: 4:00 - 5:30</option>
                                     
                                    
 

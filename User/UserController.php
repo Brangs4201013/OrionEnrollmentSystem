@@ -41,17 +41,18 @@ if(isset($_POST['editUser'])){
 
     if (!empty($_POST['password'])) {
         $Password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=?, Password=? WHERE User_ID=?, Type=?";
+        $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=?, Password=? WHERE User_ID=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssisisssis", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $Password, $UserID,$Type);
+        $stmt->bind_param("sssssisisssi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $Password, $UserID);
     } else {
-        $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=? WHERE User_ID=?, Type=?";
+        $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=? WHERE User_ID=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssisissis", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $UserID, $Type);
+        $stmt->bind_param("sssssisissi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $UserID);
     }
+    
 
     if ($stmt->execute()) {
-        header("Location: Userindex.php?message=updated");
+        header("Location: Studentindex.php?message=updated");
     } else {
         echo "Error: " . $stmt->error;
     }
