@@ -2,16 +2,6 @@
 
 
 include ('../Config/layout.php');
-
-?>
- 
- <div class="container">
-          <div class="page-inner">
-            <h1>SAmple layout here</h1>
-            </div>
-</div>
-<?php
-include ('../Config/connecttodb.php');  // Ensure DB connection is included
 include ('../Grade/gradecontroller.php');  // Include the controller file
 
 // Ensure $gradeController is properly initialized
@@ -21,11 +11,12 @@ if (!isset($gradeController)) {
 
 // Fetch grades from the controller
 $grades = $gradeController->getAllGrades();
-?>
 
-<div class="container">
-    <div class="page-inner">
-        <div class="row">
+?>
+ 
+ <div class="container">
+          <div class="page-inner">
+          <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -74,7 +65,4 @@ $grades = $gradeController->getAllGrades();
                 </div>
             </div>
         </div>
-    </div>
 </div>
-
-          
