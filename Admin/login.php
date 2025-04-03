@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 // Password verification
                 if (password_verify($Password, $row['Password'])) {
                     $_SESSION['Username'] = $Username;
+
                     $_SESSION['User_ID'] = $row['User_ID'];
                     $_SESSION['Type'] = $row['Type'];
                     $_SESSION['Email']= $row['Email'];

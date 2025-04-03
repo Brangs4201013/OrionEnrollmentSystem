@@ -149,7 +149,7 @@
                                 <label for="department">Department</label>
                                 <input type="text" class="form-control" id="department" name="department" placeholder="Enter department" required>
                             </div>
-                         
+                    
                         </div>
 
                     </div>
@@ -172,7 +172,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="update_user.php" method="POST">
+                <form action="StudentController.php" method="POST">
                     <input type="hidden" id="editUserID" name="user_id">
 
                     <div class="row">
@@ -271,7 +271,7 @@
             text: "New student record created successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "CRUDStudentindex.php"; // Removes message from URL
+            window.location.href = "Studentindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -279,7 +279,7 @@
             text: "Failed to create student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "CRUDStudentindex.php";
+            window.location.href = "Studentindex.php";
         });
     }
     if (message === 'deleted') {
@@ -288,7 +288,7 @@
             text: "Student record deleted successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "CRUDStudentindex.php"; // Removes message from URL
+            window.location.href = "Studentindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -296,7 +296,7 @@
             text: "Failed to delete student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "CRUDStudentindex.php";
+            window.location.href = "Studentindex.php";
         });
     }
     if (message === 'updated') {
@@ -305,7 +305,7 @@
             text: "Student record updated successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "CRUDStudentindex.php"; // Removes message from URL
+            window.location.href = "Studentindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -313,7 +313,7 @@
             text: "Failed to update student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "CRUDStudentindex.php";
+            window.location.href = "Studentindex.php";
         });
     }
 
