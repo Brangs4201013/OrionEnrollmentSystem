@@ -2,19 +2,18 @@
 include '../Config/connecttodb.php';
 
 if(isset($_POST['saveSchedule'])){
-   
-    $Schoolyear = $_POST['User_ID'];
-    $Semester = $_POST['Subject_ID'];
-    $Semester = $_POST['Classtime'];
+    $Teacher_ID = $_POST['Teacher_ID'];
+    $Subject_ID = $_POST['Subject_ID'];
+    $Classtime = $_POST['Classtime'];
 
     
         
     // Use prepared statements
-    $sql = "INSERT INTO schedule ( User_ID, Subject_ID, Classtime) 
+    $sql = "INSERT INTO schedule (Teacher_ID,Subject_ID, Classtime) 
             VALUES ( ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iii", $User_ID, $Subject_ID, $Classtime);
+    $stmt->bind_param("iii", $Teacher_ID, $Subject_ID, $Classtime);
 
     if ($stmt->execute()) {
         header("Location: Scheduleindex.php?message=created");
@@ -23,7 +22,7 @@ if(isset($_POST['saveSchedule'])){
     }
 }
 if(isset($_POST['editSchedule'])){
-    $User_ID = $_POST['User_ID'];
+    $Teacher_ID = $_POST['Teacher_ID'];
     $Subject_ID = $_POST['Subject_ID'];
     $Classtime = $_POST['Classtime'];
     

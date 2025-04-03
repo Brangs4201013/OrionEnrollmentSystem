@@ -63,6 +63,9 @@ include ('../Config/layout.php');
                                         data-department='".$row["Department"]."'>
                                         <i class='icon-book-open  '></i>
                                       </a>";
+                                echo "<a href='StudentController.php?user_id=".$row["User_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
+                                echo "<i class='icon-paypal'></i>";
+                                echo "</a>";
                                 echo "</td>";
                                 echo "</tr>";
                                  }
@@ -116,7 +119,11 @@ include ('../Config/layout.php');
                             </div>
                             <div class="form-group">
                                 <label for="Status">Status</label>
-                                <input type="text" class="form-control" id="Status" name="Status" placeholder="Enter Status" required>
+                                <select class="form-control" id="Status" name="Status" required>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Unpaid">Unpaid</option>
+                                    <option value="Partial">Partial</option>
+                                </select>
                             </div>              
                         </div>
 
@@ -132,12 +139,30 @@ include ('../Config/layout.php');
 </div>
 <!-- end of create student modal -->
 
+<!-- view student modal -->
+<div class="modal fade" id="viewUserModal" tabindex="-1" aria-labelledby="viewUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewUserModalLabel">Student Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Student details will be displayed here -->
+                <form action="View Student.php" method="POST">
+                <input type="hidden" id="editUserID" name="user_id">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of view student modal -->
 
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">View Student</h5>
+                <h5 class="modal-title" id="editUserModalLabel">Student List</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -147,7 +172,7 @@ include ('../Config/layout.php');
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="editUsername">Username</label>
+                                <label for="editUsername">Student Name</label>
                                 <input type="text" class="form-control" id="editUsername" name="username" required>
                             </div>
                             <div class="form-group">
@@ -207,28 +232,17 @@ include ('../Config/layout.php');
 
 </div>
 </div>
-<!-- script for edit moda -->
+<!-- script for transfer to payment-->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    var editModal = document.getElementById("editUserModal");
-    editModal.addEventListener("show.bs.modal", function (event) {
-        var button = event.relatedTarget;
-        
-        document.getElementById("editUserID").value = button.getAttribute("data-id");
-        document.getElementById("editUsername").value = button.getAttribute("data-username");
-        document.getElementById("editFname").value = button.getAttribute("data-fname");
-        document.getElementById("editLname").value = button.getAttribute("data-lname");
-        document.getElementById("editMinitial").value = button.getAttribute("data-minitial");
-        document.getElementById("editGender").value = button.getAttribute("data-gender");
-        document.getElementById("editAge").value = button.getAttribute("data-age");
-        document.getElementById("editContact").value = button.getAttribute("data-contact");
-        document.getElementById("editEmail").value = button.getAttribute("data-email");
-        document.getElementById("editDepartment").value = button.getAttribute("data-department");
+    $(document).ready(function () {
+        $(".delete-btn").click(function (e) {
+            e.preventDefault();
+            var userId = $(this).attr("data-id");
+            var invoiceId = $(this).attr("data-invoice-id");
+            window.location.href = "payment.php?user_id=" + userId + "&invoice_id=" + invoiceId;
+        });
     });
-});
-
 </script>
-
 <!-- script for datatable -->
 <script>
       $(document).ready(function () {

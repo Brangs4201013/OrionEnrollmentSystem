@@ -22,8 +22,7 @@ if(isset($_POST['editCourse'])){
     $Coursecode = $_POST['Coursecode'];
     $coursedesc = $_POST['coursedesc'];
 
-    $sql = "INSERT INTO course ( Coursecode, coursedesc) 
-    VALUES (?, ?)";
+    $sql = "UPDATE course SET Coursecode = ?, coursedesc = ?";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss",$Coursecode, $coursedesc);
