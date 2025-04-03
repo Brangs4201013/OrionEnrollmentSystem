@@ -39,7 +39,6 @@ if(isset($_POST['editStudent'])){
     $Email = $_POST['email'];
     $Department = $_POST['department'];
     
-
     if (!empty($_POST['password'])) {
         $Password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=?, Password=? WHERE User_ID=?";
@@ -48,12 +47,9 @@ if(isset($_POST['editStudent'])){
     } else {
         $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=? WHERE User_ID=?";
         $stmt = $conn->prepare($sql);
-<<<<<<< HEAD
-        $stmt->bind_param("sssssiisssi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $UserID);
-=======
-        $stmt->bind_param("sssssiiss", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department);
->>>>>>> 966ffbc240209c5e1b0169d457223d322c87e131
+        $stmt->bind_param("sssssiissi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $UserID);
     }
+
 
     if ($stmt->execute()) {
         header("Location: Studentindex.php?message=updated");
