@@ -46,6 +46,7 @@ if (isset($_POST['editUser'])) {
 
     if (!empty($_POST['password'])) {
         $Password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
         $sql = "UPDATE user SET Username=?, Password=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=?, Type=? WHERE User_ID=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssssssissssi", $Username, $Password, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $Type, $UserID);
@@ -53,11 +54,15 @@ if (isset($_POST['editUser'])) {
         $sql = "UPDATE user SET Username=?, Fname=?, Lname=?, Minitial=?, Gender=?, Age=?, Contact=?, Email=?, Department=?, Type=? WHERE User_ID=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sssssisissi", $Username, $Fname, $Lname, $Minitial, $Gender, $Age, $Contact, $Email, $Department, $Type, $UserID);
+
     }
+    
 
     if ($stmt->execute()) {
+
         header("Location: Userindex.php?message=updated");
         exit();
+
     } else {
         echo "Error: " . $stmt->error;
     }

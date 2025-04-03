@@ -2,16 +2,15 @@
 include '../Config/connecttodb.php';
 
 if(isset($_POST['saveSubject'])){
-    $Subjectname = $_POST['Subjectname'];
     $Subjectcode = $_POST['Subjectcode'];
     $Subjectdesc = $_POST['Subjectdesc'];
  
     // Use prepared statements
-    $sql = "INSERT INTO subject ( Subjectname, Subjectcode,Subjectdesc) 
-            VALUES (?, ?, ?)";
+    $sql = "INSERT INTO subject ( Subjectcode,Subjectdesc) 
+            VALUES (?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param( "sss", $Subjectname, $Subjectcode,$Subjectdesc);
+    $stmt->bind_param( "ss", $Subjectcode,$Subjectdesc);
 
     if ($stmt->execute()) {
         header("Location: Subjectindex.php?message=created");
@@ -20,16 +19,15 @@ if(isset($_POST['saveSubject'])){
     }
 }
 if(isset($_POST['editSubject'])){
-    $Subjectname = $_POST['Subjectname'];
     $Subjectcode = $_POST['Subjectcode'];
     $Subjectdesc = $_POST['Subjectdesc'];
  
     // Use prepared statements
-    $sql = "INSERT INTO subject ( Subjectname, Subjectcode,Subjectdesc) 
-            VALUES (?, ?, ?)";
+    $sql = "INSERT INTO subject (  Subjectcode,Subjectdesc) 
+            VALUES (?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param( "sss", $Subjectname, $Subjectcode,$Subjectdesc);
+    $stmt->bind_param( "ss", $Subjectcode,$Subjectdesc);
 
     if ($stmt->execute()) {
         header("Location: Subjectindex.php?message=created");

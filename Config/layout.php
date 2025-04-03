@@ -493,3 +493,18 @@ session_start(); // Start the session
     <!-- <script src="../assets/js/demo.js"></script> -->
     </html>
 
+    <script>
+    // Check if there is a message in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+
+    if (message === 'login') {
+        swal({
+            title: "Success!",
+            text: "Welcome to Orion Enrollment System!",
+            icon: "success"
+        }).then(() => {
+            window.location.href = "../Config/layout.php"; // Removes message from URL
+        });
+    }
+</script>
