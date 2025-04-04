@@ -39,14 +39,16 @@
                         <tbody>
                             <?php
                             include ('../Config/connecttodb.php');
-                            $sql = "SELECT * FROM schedule";
+                            $sql = "SELECT * FROM schedule 
+                            INNER JOIN user ON schedule.Teacher_ID = user.User_ID 
+                            INNER JOIN subject ON schedule.Subject_ID = subject.Subject_ID";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
                                 echo "<tr>";
                                 echo "<td>".$row["Sched_ID"]."</td>";
-                                echo "<td>".$row["Teacher_ID"]."</td>";
-                                echo "<td>".$row["Subject_ID"]."</td>";
+                                echo "<td>".$row["Fname"]." ".$row["Lname"]." "."</td>";
+                                echo "<td>".$row["Subjectcode"]." - ".$row["Subjectdesc"]." "."</td>";
                                 echo "<td>".$row["Classtime"]."</td>";
                               
                                 echo "<td>";
@@ -118,7 +120,6 @@
                             <div class="form-group">
                                 <label for="editSubject_ID">Subject_ID</label>
                                 <select class="form-control" id="editSubject_ID" name="Subject_ID" required>
-                                <option value="">Select Subject</option>
                                 <?php 
                                     include ('../Config/connecttodb.php');
                                     $sql = "SELECT * FROM subject";
@@ -189,8 +190,7 @@
                     <div class="col-sm-10 ms-auto me-auto">
                     <div class="form-group">
                                 <label for="editTeacher_ID">Name</label>
-                                <select class="form-control" id="editTeacher_ID" name="Teacher_ID" required>
-                                <option value="">Select Instructor</option>
+                                <label class="form-control" id="editTeacher_ID" name="Teacher_ID" required>
                                 <?php 
                                     include ('../Config/connecttodb.php');
                                     $sql = "SELECT * FROM user WHERE Type = 'Teacher'";
@@ -208,15 +208,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="editSubject_ID">Subject_ID</label>
-                                <select class="form-control" id="editSubject_ID" name="Subject_ID" required>
-                                <option value="">Select Subject</option>
+                                <input class="form-control" id="editSubject_ID" name="Subject_ID" required>
                                 <?php 
                                     include ('../Config/connecttodb.php');
                                     $sql = "SELECT * FROM subject";
                                         $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo "<option value='".$row["Subject_ID"]."'>".$row["Subject_ID"].$row['Subjectcode']." - ".$row['Subjectdesc']."</option>";
+                                                    echo "<option value='".$row["Subject_ID"]."'>".$row['Subjectcode']." - ".$row['Subjectdesc']."</option>";
                                                 }
                                             } else {
                                                 echo "<option value=''>No Subject Available</option>";
@@ -289,13 +288,12 @@
 <!-- script for notif alert  -->
 <script>
     // Check if there is a message in the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const message = urlParams.get('message');
+   
 
     if (message === 'created') {
         swal({
             title: "Success!",
-            text: "New student record created successfully!",
+            text: "New schedule record created successfully!",
             icon: "success"
         }).then(() => {
             window.location.href = "Scheduleindex.php"; // Removes message from URL
@@ -303,7 +301,7 @@
     } else if (message === 'error') {
         swal({
             title: "Error!",
-            text: "Failed to create student record.",
+            text: "Failed to create schedule record.",
             icon: "error"
         }).then(() => {
             window.location.href = "Scheduleindex.php";
@@ -312,7 +310,7 @@
     if (message === 'deleted') {
         swal({
             title: "Success!",
-            text: "Student record deleted successfully!",
+            text: "Schedule record deleted successfully!",
             icon: "success"
         }).then(() => {
             window.location.href = "Scheduleindex.php"; // Removes message from URL
@@ -320,7 +318,7 @@
     } else if (message === 'error') {
         swal({
             title: "Error!",
-            text: "Failed to delete student record.",
+            text: "Failed to delete schedule record.",
             icon: "error"
         }).then(() => {
             window.location.href = "Scheduleindex.php";
@@ -329,7 +327,7 @@
     if (message === 'updated') {
         swal({
             title: "Success!",
-            text: "Student record updated successfully!",
+            text: "Schedule record updated successfully!",
             icon: "success"
         }).then(() => {
             window.location.href = "Scheduleindex.php"; // Removes message from URL
@@ -337,7 +335,7 @@
     } else if (message === 'error') {
         swal({
             title: "Error!",
-            text: "Failed to update student record.",
+            text: "Failed to update schedule record.",
             icon: "error"
         }).then(() => {
             window.location.href = "Scheduleindex.php";
