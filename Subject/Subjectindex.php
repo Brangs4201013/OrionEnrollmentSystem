@@ -98,7 +98,7 @@
                         </div>
 
                     </div>
-                    <div class="card-action ms-auto me-auto" style="text-align: center;">
+                    <div class="card-action ms-auto me-auto mt-3" style="text-align: center;">
                         <button type="submit" class="btn btn-success" name="saveSubject">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
@@ -110,7 +110,7 @@
 <!-- end of create student modal -->
  <!-- Edit Student Modal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editUserModalLabel">Edit Subject</h5>
@@ -122,7 +122,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                        <div class="form-group">
+                          <div class="form-group">
                                 <label for="editSubjectcode">Subject Code</label>
                                 <input type="text" class="form-control" id="editSubjectcode" name="Subjectcode" required>
                             </div>
@@ -137,11 +137,12 @@
                                     <option value="Female">Female</option>
                                 </select>
                             </div>
-                        </div>
+
+                            </div>
                         </div>
 
                     </div>
-                    <div class="card-action ms-auto me-auto" style="text-align: center;">
+                    <div class="card-action ms-auto me-auto mt-3" style="text-align: center;">
                         <button type="submit" class="btn btn-success" name="editSubject">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
@@ -172,8 +173,8 @@
 <!-- script for notif alert  -->
 <script>
     // Check if there is a message in the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const message = urlParams.get('message');
+    // let urlParams = new URLSearchParams(window.location.search);
+    // let message = urlParams.get('message');
 
     if (message === 'created') {
         swal({

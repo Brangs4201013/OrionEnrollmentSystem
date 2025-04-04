@@ -14,8 +14,8 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">SchoolYear</h4>
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSchoolyear">Add a new Student</button>
+                    <h4 class="card-title">Enrollment</h4>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEnrollment">Add a new Student</button>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -51,7 +51,9 @@
                         <tbody>
                             <?php
                             include ('../Config/connecttodb.php');
-                            $sql = "SELECT * FROM Schoolyear";
+
+                            $sql = "SELECT * FROM Enrollment";
+
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
@@ -77,7 +79,7 @@
                                       </a>";
                                     
 
-                                echo "<a href='SchoolYearController.php?ENROLLMENT_id=".$row["E_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
+                                echo "<a href='EnrollmentController.php?E_id=".$row["E_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
                                 echo "<i class='fa fa-times'></i>";
                                 echo "</a>";
                                 echo "</td>";
@@ -100,32 +102,145 @@
     <!-- create Student Modal -->
      <!-- Bootstrap Modal -->
 <<!-- Bootstrap Modal -->
-<div class="modal fade" id="addSchoolyear" tabindex="-1" aria-labelledby="addSchoolyearLabel" aria-hidden="true">
+<div class="modal fade" id="addEnrollment" tabindex="-1" aria-labelledby="addEnrollmentLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addSchoolyearLabel">Add New SchoolYear</h5>
+                <h5 class="modal-title" id="addEnrollmentLabel">Add New Enrollment </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="SchoolYearController.php" method="POST">
+                <form action="EnrollmentController.php" method="POST">
                     <div class="row">
                         <div class="col-md-10 ms-auto me-auto">
                        
                             <div class="form-group">
-                                <label for="Schoolyear">Schoolyear</label>
-                                <input type="text" class="form-control" id="Schoolyear" name="Schoolyear" placeholder="Enter Schoolyear" required>
+                                <label for="User_ID">Student</label>                    
+                                <select name="User_ID" id="User_ID" class="form-control" required>
+                                    <option value="">Select Student</option>
+                                    <?php
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'Student'";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<option value='".$row["User_ID"]."'>".$row["Fname"]." ".$row["Lname"]."</option>";
+                                        }
+                                    } else {
+                                        echo "<option value=''>No students found</option>";
+                                    }
+                                
+                                    ?>
+                                </select>
                             </div>
+
                             <div class="form-group">
-                                <label for="Semester">Semester</label>
-                                <input type="text" class="form-control" id="Semester" name="Semester" placeholder="Enter Semester" required>
+                                <label for="Schoolyr_ID">SchoolYear</label>                          
+                                <select name="Schoolyr_ID" id="Schoolyr_ID" class="form-control" required>
+                                    <option value="">Select SchoolYear</option>
+                                    <?php
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'SchoolYear'";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<option value='".$row["Schoolyr_ID"]."</option>";
+                                        }
+                                    } else {
+                                        echo "<option value=''>No SchoolYear found</option>";
+                                    }
+                                
+                                    ?>
+                                </select>
                             </div>
+
+                            <div class="form-group">
+                                <label for="Subject_ID">Subject</label>                            
+                                <select name="Subject_ID" id="Subject_ID" class="form-control" required>
+                                    <option value="">Select Subject</option>
+                                    <?php
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'Subject'";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<option value='".$row["Subject_ID"]."</option>";
+                                        }
+                                    } else {
+                                        echo "<option value=''>No Subject found</option>";
+                                    }
+                                
+                                    ?>
+                                </select>
+                            </div>
+
+                            
+                            <div class="form-group">
+                                <label for="Date">Date</label>                           
+                                <select name="Date" id="Date" class="form-control" required>
+                                    <option value="">Select Date</option>
+                                    <?php
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'Date'";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<option value='".$row["Date"]."</option>";
+                                        }
+                                    } else {
+                                        echo "<option value=''>No Date found</option>";
+                                    }
+                                
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Year">Year</label>                       
+                                <select name="Year" id="Year" class="form-control" required>
+                                    <option value="">Select Year</option>
+                                    <?php
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'Year'";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<option value='".$row["Year"]."</option>";
+                                        }
+                                    } else {
+                                        echo "<option value=''>No Year found</option>";
+                                    }
+                                
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Course_ID">Course</label>                       
+                                <select name="Course_ID" id="Course" class="form-control" required>
+                                    <option value="">Select Course</option>
+                                    <?php
+                                    include ('../Config/connecttodb.php');
+                                    $sql = "SELECT * FROM user WHERE Type = 'Course'";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<option value='".$row["Course_ID"]."</option>";
+                                        }
+                                    } else {
+                                        echo "<option value=''>No Course found</option>";
+                                    }
+                                
+                                    ?>
+                                </select>
+                            </div>
+                            
                     
                            
                         </div>
                     </div>
                     <div class="card-action ms-auto me-auto" style="text-align: center;">
-                        <button type="submit" class="btn btn-success" name="saveSchoolYear">Submit</button>
+                        <button type="submit" class="btn btn-success" name="saveEnrollment">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -135,35 +250,50 @@
 </div>
 <!-- end of create student modal -->
  <!-- Edit Student Modal -->
-<div class="modal fade" id="editSchoolyearModal" tabindex="-1" aria-labelledby="editSchoolYearLabel" aria-hidden="true">
+<div class="modal fade" id="editEnrollmentModal" tabindex="-1" aria-labelledby="editEnrollmentLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editSchoolYearLabel">Edit SchoolYear</h5>
+                <h5 class="modal-title" id="editEnrollmentLabel">Edit Enrollment</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="SchoolYearController.php" method="POST">
-                <input type="hidden" id="Schoolyr_ID" name="schoolyr_ID">
+                <form action="EnrollmentController.php" method="POST">
+                <input type="hidden" id="E_ID" name="E_ID">
 
                     <div class="row">
                         <div class="col-md-6">
                         
+                        <div class="form-group">
+                                <label for="User_id">User_id</label>
+                                <input type="text" class="form-control" id="User_id" name="User_id" placeholder="Enter User_id" required>
+                            </div>
                             <div class="form-group">
-                                <label for="editSchoolyear">Schoolyear</label>
-                                <input type="text" class="form-control" id="editSchoolyear" name="Schoolyear" required>
-                            </div>
+                                <label for="Schoolyr_ID">Schoolyr_ID</label>
+                                <input type="text" class="form-control" id="Schoolyr_ID" name="Schoolyr_ID" placeholder="Enter Schoolyr_ID" required>
                             </div>
                             <div class="form-group">
-                                <label for="editSemester">Semester</label>
-                                <input type="text" class="form-control" id="editSemester" name="Semester" required>
+                                <label for="Subject_ID">Subject_ID</label>
+                                <input type="text" class="form-control" id="Subject_ID" name="Subject_ID" placeholder="Enter Subject_ID" required>
                             </div>
-
+                            <div class="form-group">
+                                <label for="Date">Date</label>
+                                <input type="text" class="form-control" id="Date" name="Date" placeholder="Enter Date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Year">Year</label>
+                                <input type="text" class="form-control" id="Year" name="Year" placeholder="Enter Year" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Course_ID">Course_ID</label>
+                                <input type="text" class="form-control" id="Course_ID" name="Course_ID" placeholder="Enter Course_ID" required>
+                            </div>
+                            
                         </div>
                         
                 
                     <div class="card-action ms-auto me-auto" style="text-align: center;">
-                        <button type="submit" class="btn btn-success" name="editSchoolyear">Submit</button>
+                        <button type="submit" class="btn btn-success" name="editEnrollment">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -179,12 +309,16 @@
 <!-- script for edit moda -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-    var editModal = document.getElementById("editSchoolyearModal");
+    var editModal = document.getElementById("editEnrollmentModal");
     editModal.addEventListener("show.bs.modal", function (event) {
         var button = event.relatedTarget;
     
-        document.getElementById("editSchoolyear").value = button.getAttribute("data-Schoolyear");
-        document.getElementById("editSemester").value = button.getAttribute("data-Semester");
+        document.getElementById("editUser_id").value = button.getAttribute("data-User_id");
+        document.getElementById("editSchoolyr_ID").value = button.getAttribute("data-Schoolyr_ID");
+        document.getElementById("editSubject_ID").value = button.getAttribute("data-Subject_ID");
+        document.getElementById("editDate").value = button.getAttribute("data-Date");
+        document.getElementById("editYear").value = button.getAttribute("data-Year");
+        document.getElementById("editCourse_ID").value = button.getAttribute("data-Course_ID");
        
     });
 });
@@ -202,7 +336,7 @@
             text: "New student record created successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php"; // Removes message from URL
+            window.location.href = "Enrollmentindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -210,7 +344,7 @@
             text: "Failed to create student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php";
+            window.location.href = "Enrollmentindex.php";
         });
     }
     if (message === 'deleted') {
@@ -219,7 +353,7 @@
             text: "Student record deleted successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php"; // Removes message from URL
+            window.location.href = "Enrollmentindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -227,7 +361,7 @@
             text: "Failed to delete student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php";
+            window.location.href = "Enrollmentindex.php";
         });
     }
     if (message === 'updated') {
@@ -236,7 +370,7 @@
             text: "Student record updated successfully!",
             icon: "success"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php"; // Removes message from URL
+            window.location.href = "Enrollmentindex.php"; // Removes message from URL
         });
     } else if (message === 'error') {
         swal({
@@ -244,7 +378,7 @@
             text: "Failed to update student record.",
             icon: "error"
         }).then(() => {
-            window.location.href = "SchoolYearindex.php";
+            window.location.href = "Enrollmentindex.php";
         });
     }
 
