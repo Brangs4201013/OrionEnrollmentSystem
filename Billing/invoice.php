@@ -45,7 +45,7 @@ include ('../Config/layout.php');
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<td>".$row["Fname"]."  ".$row['Lname']." ".$row['Minitial']."</td>";
+                                echo "<td>".$row["Fname"]."  ".$row['Lname']." ".$row['User_ID']."</td>";
                                 echo "<td>".$row["Total_Amount"]."</td>";
                                 echo "<td>".$row["Due_date"]."</td>";
                                 echo "<td>".$row["Status"]."</td>";
@@ -63,7 +63,7 @@ include ('../Config/layout.php');
                                         data-department='".$row["Department"]."'>
                                         <i class='icon-book-open  '></i>
                                       </a>";
-                                echo "<a href='StudentController.php?user_id=".$row["User_ID"]."' type='button' class='btn btn-link btn-danger delete-btn'>";
+                                echo "<a href='payment.php?user_id=".$row["User_ID"]."' type='button' class='btn btn-link btn-danger select-btn'>";
                                 echo "<i class='icon-paypal'></i>";
                                 echo "</a>";
                                 echo "</td>";
@@ -232,17 +232,9 @@ include ('../Config/layout.php');
 
 </div>
 </div>
-<!-- script for transfer to payment-->
-<script>
-    $(document).ready(function () {
-        $(".delete-btn").click(function (e) {
-            e.preventDefault();
-            var userId = $(this).attr("data-id");
-            var invoiceId = $(this).attr("data-invoice-id");
-            window.location.href = "payment.php?user_id=" + userId + "&invoice_id=" + invoiceId;
-        });
-    });
-</script>
+
+<!-- script for select student-->
+
 <!-- script for datatable -->
 <script>
       $(document).ready(function () {
