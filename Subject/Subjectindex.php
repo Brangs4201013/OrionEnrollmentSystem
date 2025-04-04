@@ -22,7 +22,7 @@
                           <tr>
                             <th>Subject_code</th>
                             <th>Subject_Description</th>
-                            <th>Sched_ID</th>
+                          
                             <th>Actions</th>
                           
                           </tr>
@@ -31,7 +31,7 @@
                           <tr>
                             <th>Subject_code</th>
                             <th>Subject_Description</th>
-                            <th>Sched_ID</th>
+
                             <th>Actions</th>
                           </tr>
                         </tfoot>
@@ -45,7 +45,6 @@
                                 echo "<tr>";
                                 echo "<td>".$row["Subjectcode"]."</td>";
                                 echo "<td>".$row["Subjectdesc"]."</td>";
-                                echo "<td>".$row["Sched_ID"]."</td>";
                                 echo "<td>";
                                 echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editUserModal' 
                                         data-id='".$row["Subject_ID"]."' 
@@ -86,10 +85,11 @@
             <div class="modal-body">
                 <form action="SubjectController.php" method="POST">
                     <div class="row ">
-                        <div class="col-md-10">
+                        <div class="col-md-10 ">
                             <div class="form-group">
                                 <label for="Subjectcode">Subject Code</label>
                                 <input type="Subjectcode" class="form-control" id="Subjectcode" name="Subjectcode" placeholder="Subjectcode" required>
+
                             </div>
                             <div class="form-group">
                                 <label for="Subjectdesc">Subject Description</label>
@@ -110,18 +110,19 @@
 <!-- end of create student modal -->
  <!-- Edit Student Modal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-dialog modal-MD modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editUserModalLabel">Edit Subject</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
             </div>
             <div class="modal-body">
                 <form action="SubjectController.php" method="POST">
                     <input type="hidden" id="editSubjectID" name="Subject_id">
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                           <div class="form-group">
                                 <label for="editSubjectcode">Subject Code</label>
                                 <input type="text" class="form-control" id="editSubjectcode" name="Subjectcode" required>
@@ -130,13 +131,8 @@
                                 <label for="editSubjectdesc">Subject Description</label>
                                 <input type="text" class="form-control" id="editSubjectdesc" name="Subjectdesc" required>
                             </div>
-                            <div class="form-group">
-                            <label for="editSched_ID">Sched_ID</label>
-                                <select class="form-control" id="editSched_ID" name="Sched_ID" required>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
+                           
+                            
 
                             </div>
                         </div>

@@ -80,7 +80,7 @@
      <!-- Bootstrap Modal -->
 <<!-- Bootstrap Modal -->
 <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-MD modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addUserModalLabel">Add New Course</h5>
@@ -89,7 +89,7 @@
             <div class="modal-body">
                 <form action="CourseController.php" method="POST">
                     <div class="row ">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <div class="form-group">
                                 <label for="Coursecode">Coursecode</label>
                                 <input type="Coursecode" class="form-control" id="Coursecode" name="Coursecode" placeholder="Coursecode" required>
@@ -114,7 +114,7 @@
 <!-- end of create student modal -->
  <!-- Edit Student Modal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-MD modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editUserModalLabel">Edit Course</h5>
@@ -125,7 +125,7 @@
                     <input type="hidden" id="editCourseID" name="course_id">
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <div class="form-group">
                                 <label for="editCoursecode">Coursecode</label>
                                 <input type="text" class="form-control" id="editCoursecode" name="Coursecode" required>
@@ -167,9 +167,6 @@
 </script>
 <!-- script for notif alert  -->
 <script>
-    // Check if there is a message in the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const message = urlParams.get('message');
 
     if (message === 'created') {
         swal({

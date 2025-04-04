@@ -23,11 +23,11 @@ if(isset($_POST['editSubject'])){
     $Subjectdesc = $_POST['Subjectdesc'];
  
     // Use prepared statements
-    $sql = "INSERT INTO subject (  Subjectcode,Subjectdesc) 
-            VALUES (?, ?)";
+    $sql = "UPDATE subject SET Subjectcode = ?, Subjectdesc = ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param( "ss", $Subjectcode,$Subjectdesc);
+    $stmt->bind_param("ss",$Subjectcode, $Subjectdesc);
+    
 
     if ($stmt->execute()) {
         header("Location: Subjectindex.php?message=created");
