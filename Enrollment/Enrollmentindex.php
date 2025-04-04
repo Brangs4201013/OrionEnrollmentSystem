@@ -28,10 +28,7 @@
                             <th>E_ID</th>
                             <th>User_ID</th>
                             <th>Schoolyr_ID	</th>
-                            <th>Subject_ID	</th>
-                            <th>Date</th>
-                            <th>Year</th>
-                            <th>Course_ID</th>
+                            <th>Subject_ID	</th>                      
                             <th>Actions</th>
                             
                           </tr>
@@ -42,9 +39,7 @@
                             <th>User_ID</th>
                             <th>Schoolyr_ID	</th>
                             <th>Subject_ID	</th>
-                            <th>Date</th>
-                            <th>Year</th>
-                            <th>Course_ID</th>
+                            
                             <th>Actions</th>
                           </tr>
                         </tfoot>
@@ -59,20 +54,13 @@
                                 echo "<td>".$row["E_ID"]."</td>";
                                 echo "<td>".$row["User_ID"]."</td>";
                                 echo "<td>".$row["Schoolyr_ID"]."</td>";
-                                echo "<td>".$row["Subject_ID"]."</td>";
-                                echo "<td>".$row["Date"]."</td>";
-                                echo "<td>".$row["Year"]."</td>";
-                                echo "<td>".$row["Course_ID"]."</td>";
-                              
+                                echo "<td>".$row["Subject_ID"]."</td>";                           
                                 echo "<td>";
                                 echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editEnrollmentModal' 
-                                        data-Schoolyr_ID='".$row["E_ID"]."' 
+                                        data-E_ID='".$row["E_ID"]."' 
                                         data-Schoolyr_ID='".$row["User_ID"]."' 
-                                        data-Schoolyear='".$row["Schoolyr_ID"]."' 
-                                        data-Semester='".$row["Subject_ID"]."'>
-                                        data-Schoolyear='".$row["Date"]."' 
-                                        data-Schoolyear='".$row["Year"]."'
-                                        data-Semester='".$row["Course_ID"]."'>
+                                        data-Schoolyr_ID='".$row["Schoolyr_ID"]."' 
+                                        data-Semester='".$row["Subject_ID"]."'>                                     
                                         <i class='fa fa-edit'></i>                                  
                                       </a>";
                                     
@@ -133,24 +121,24 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="Schoolyr_ID">SchoolYear</label>                          
+                                <label for="Schoolyr_ID">SchoolYear</label>
                                 <select name="Schoolyr_ID" id="Schoolyr_ID" class="form-control" required>
                                     <option value="">Select SchoolYear</option>
                                     <?php
                                     include ('../Config/connecttodb.php');
-                                    $sql = "SELECT * FROM user WHERE Type = 'SchoolYear'";
+                                    $sql = "SELECT * FROM Schoolyear WHERE Type = 'SchoolYear'";
                                     $result = $conn->query($sql);
                                     if ($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) {
-                                            echo "<option value='".$row["Schoolyr_ID"]."</option>";
+                                            echo "<option value='".$row["Schoolyr_ID"]."'>".$row["Schoolyr_ID"]."</option>";  
                                         }
                                     } else {
                                         echo "<option value=''>No SchoolYear found</option>";
                                     }
-                                
                                     ?>
                                 </select>
                             </div>
+
 
                             <div class="form-group">
                                 <label for="Subject_ID">Subject</label>                            
