@@ -1,3 +1,9 @@
+<?php
+session_start(); // Start the session
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -70,13 +76,8 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
           <div class="sidebar-content">
             <ul class="nav nav-secondary">
-              <li class="nav-item">
-                <a
-                  data-bs-toggle="collapse"
-                  href="#dashboard"
-                  class="collapsed"
-                  aria-expanded="false"
-                >
+              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
+                <a href="../Config/dashboard.php">
                   <i class="fas fa-home"></i>
                   <p>Dashboard</p>
                 </a>
@@ -116,10 +117,18 @@
                   <p>SchoolYear</p>
                 </a>
                 </li>
-
-               
-             
-
+                <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'invoice.php' ? 'active' : ''; ?>">
+              <a href="../Billing/invoice.php">
+                  <i class="fas fa-table"></i>
+                  <p>Billing</p>
+                </a>
+                </li>
+                <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'gradeindex.php' ? 'active' : ''; ?>">
+              <a href="../Grade/gradeindex.php">
+                  <i class="fas fa-table"></i>
+                  <p>Grade</p>
+                </a>
+                </li>
             </ul>
           </div>
         </div>
@@ -278,7 +287,7 @@
                             </div>
                             <div class="notif-content">
                               <span class="subject">Talha</span>
-                              <span class="block"> Hi, Apa Kabar ? </span>
+                              <span class="block"> Hi, <?php echo $_SESSION['Username'];?> </span>
                               <span class="time">17 minutes ago</span>
                             </div>
                           </a>
@@ -340,7 +349,7 @@
                           <a href="#">
                             <div class="notif-img">
                               <img
-                                src="../assets/img/profile2.jpg"
+                                src="../Config/cat.jfif"
                                 alt="Img Profile"
                               />
                             </div>
@@ -379,76 +388,7 @@
                   >
                     <i class="fas fa-layer-group"></i>
                   </a>
-                  <div class="dropdown-menu quick-actions animated fadeIn">
-                    <div class="quick-actions-header">
-                      <span class="title mb-1">Quick Actions</span>
-                      <span class="subtitle op-7">Shortcuts</span>
-                    </div>
-                    <div class="quick-actions-scroll scrollbar-outer">
-                      <div class="quick-actions-items">
-                        <div class="row m-0">
-                          <a class="col-6 col-md-4 p-0" href="#">
-                            <div class="quick-actions-item">
-                              <div class="avatar-item bg-danger rounded-circle">
-                                <i class="far fa-calendar-alt"></i>
-                              </div>
-                              <span class="text">Calendar</span>
-                            </div>
-                          </a>
-                          <a class="col-6 col-md-4 p-0" href="#">
-                            <div class="quick-actions-item">
-                              <div
-                                class="avatar-item bg-warning rounded-circle"
-                              >
-                                <i class="fas fa-map"></i>
-                              </div>
-                              <span class="text">Maps</span>
-                            </div>
-                          </a>
-                          <a class="col-6 col-md-4 p-0" href="#">
-                            <div class="quick-actions-item">
-                              <div class="avatar-item bg-info rounded-circle">
-                                <i class="fas fa-file-excel"></i>
-                              </div>
-                              <span class="text">Reports</span>
-                            </div>
-                          </a>
-                          <a class="col-6 col-md-4 p-0" href="#">
-                            <div class="quick-actions-item">
-                              <div
-                                class="avatar-item bg-success rounded-circle"
-                              >
-                                <i class="fas fa-envelope"></i>
-                              </div>
-                              <span class="text">Emails</span>
-                            </div>
-                          </a>
-                          <a class="col-6 col-md-4 p-0" href="#">
-                            <div class="quick-actions-item">
-                              <div
-                                class="avatar-item bg-primary rounded-circle"
-                              >
-                                <i class="fas fa-file-invoice-dollar"></i>
-                              </div>
-                              <span class="text">Invoice</span>
-                            </div>
-                          </a>
-                          <a class="col-6 col-md-4 p-0" href="#">
-                            <div class="quick-actions-item">
-                              <div
-                                class="avatar-item bg-secondary rounded-circle"
-                              >
-                                <i class="fas fa-credit-card"></i>
-                              </div>
-                              <span class="text">Payments</span>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
+                  
                 <li class="nav-item topbar-user dropdown hidden-caret">
                   <a
                     class="dropdown-toggle profile-pic"
@@ -458,14 +398,14 @@
                   >
                     <div class="avatar-sm">
                       <img
-                        src="../assets/img/profile.jpg"
+                        src="../Config/cat.jfif"
                         alt="..."
                         class="avatar-img rounded-circle"
                       />
                     </div>
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
+                      <span class="fw-bold"><?php echo $_SESSION['Username'];?></span></span>
                     </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -474,16 +414,16 @@
                         <div class="user-box">
                           <div class="avatar-lg">
                             <img
-                              src="../assets/img/profile.jpg"
+                              src="../Config/cat.jfif"
                               alt="image profile"
                               class="avatar-img rounded"
                             />
                           </div>
                           <div class="u-text">
-                            <h4>Hizrian</h4>
+                            <h4> <?php echo $_SESSION['Username'];?></h4>
                             <p class="text-muted">hello@example.com</p>
                             <a
-                              href="profile.html"
+                              href="../Admin/login.php"
                               class="btn btn-xs btn-secondary btn-sm"
                               >View Profile</a
                             >
@@ -498,7 +438,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="../Admin/logout.php">Logout</a>
                       </li>
                     </div>
                   </ul>
@@ -506,10 +446,13 @@
               </ul>
             </div>
           </nav>
-          <!-- End Navbar -->
-           
 
+          <!-- End Navbar -->
+
+          
         </div>
+
+        
     </body>
 
     <!--   Core JS Files   -->

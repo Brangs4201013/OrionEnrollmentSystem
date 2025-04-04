@@ -45,7 +45,9 @@
                         <tbody>
                             <?php
                             include ('../Config/connecttodb.php');
-                            $sql = "SELECT * FROM enrollment";
+
+                            $sql = "SELECT * FROM Enrollment";
+
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {

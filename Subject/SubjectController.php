@@ -37,14 +37,14 @@ if(isset($_POST['editSubject'])){
 
 }
 
-if (isset($_GET['Subject_id'])) {
-    $id = intval($_GET['Subject_id']); // Convert to integer to prevent SQL injection
+if (isset($_GET['Subject_ID'])) {
+    $id = intval($_GET['Subject_ID']); // Convert to integer to prevent SQL injection
 
     // Prepare the SQL statement
     $stmt = mysqli_prepare($conn, "DELETE FROM subject WHERE Subject_ID = ?");
     mysqli_stmt_bind_param($stmt, "i", $id);
     if ($stmt->execute()) {
-        header("Location: Courseindex.php?message=deleted");
+        header("Location: Subjectindex.php?message=deleted");
     } else {
         echo "Error: " . $stmt->error;
     }
