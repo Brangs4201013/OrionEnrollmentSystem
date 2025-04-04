@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $Password = trim($_POST['Password']);
 
     if (!empty($Username) && !empty($Password)) {
-        $stmt = $conn->prepare("SELECT User_ID, Password, Type FROM user WHERE LOWER(Username) = LOWER(?)");
+        $stmt = $conn->prepare("SELECT * FROM user WHERE LOWER(Username) = LOWER(?)");
 
         if ($stmt) {
             $stmt->bind_param("s", $Username);
@@ -27,8 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
                 // Password verification
                 if (password_verify($Password, $row['Password'])) {
-                    $_SESSION['Username'] = $Username;
-
+                    $_SESSION['Username'] = $row['Username'];
                     $_SESSION['User_ID'] = $row['User_ID'];
                     $_SESSION['Type'] = $row['Type'];
                     $_SESSION['Email']= $row['Email'];
@@ -239,6 +238,6 @@ $conn->close();
 
     animate();
 </script>
-
+ 
 </body>
 </html>

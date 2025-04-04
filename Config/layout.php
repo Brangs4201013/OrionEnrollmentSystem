@@ -1,6 +1,5 @@
 <?php
 session_start(); // Start the session
-
 ?>
 
 
@@ -127,6 +126,12 @@ session_start(); // Start the session
               <a href="../Grade/gradeindex.php">
                   <i class="fas fa-table"></i>
                   <p>Grade</p>
+                </a>
+                </li>
+                <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'Scheduleindexs.php' ? 'active' : ''; ?>">
+              <a href="../Schedule/Scheduleindex.php">
+                  <i class="fas fa-table"></i>
+                  <p>Schedules</p>
                 </a>
                 </li>
             </ul>
@@ -420,8 +425,9 @@ session_start(); // Start the session
                             />
                           </div>
                           <div class="u-text">
-                            <h4> <?php echo $_SESSION['Username'];?></h4>
-                            <p class="text-muted">hello@example.com</p>
+                            <h4> <?php echo $_SESSION['Username'];?>
+                          </h4>
+                            <p class="text-muted"><?php echo $_SESSION['Email']?>;</p>
                             <a
                               href="../Admin/login.php"
                               class="btn btn-xs btn-secondary btn-sm"
