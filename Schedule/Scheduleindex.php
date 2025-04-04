@@ -137,6 +137,7 @@
                             <div class="form-group">
                                 <label for="editClasstime">Classtime</label>
                                 <select class="form-control" id="editClasstime" name="Classtime" required>
+
                                     <option value="">Select Class Time</option>
                                     <option value="MWF: 7:30 AM - 8:30 AM">MWF: 7:30 AM - 8:30 AM</option>
                                     <option value="MWF: 8:30 AM - 9:30 AM">MWF: 8:30 AM - 9:30 AM</option>
@@ -153,6 +154,7 @@
                                     <option value="TTH: 1:00 PM - 2:30 PM">TTH: 1:00 PM - 2:30 PM</option>
                                     <option value="TTH: 2:30 PM - 4:00 PM">TTH: 2:30 PM - 4:00 PM</option>
                                     <option value="TTH: 4:00 PM - 5:30 PM">TTH: 4:00 PM - 5:30 PM</option>
+
                                    
 
                                 

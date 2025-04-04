@@ -15,7 +15,7 @@
                 <div class="card">
                   <div class="card-header">
                     <h4 class="card-title">SchoolYear</h4>
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSchoolyear">Add a new Student</button>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSchoolyear">Add a new SchoolYear</button>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -133,7 +133,7 @@
 <!-- end of create student modal -->
  <!-- Edit Student Modal -->
 <div class="modal fade" id="editSchoolyearModal" tabindex="-1" aria-labelledby="editSchoolYearLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editSchoolYearLabel">Edit SchoolYear</h5>
@@ -144,7 +144,7 @@
                 <input type="hidden" id="Schoolyr_ID" name="schoolyr_ID">
 
                     <div class="row">
-                    <div class="col-sm-10 ms-auto me-auto">
+                    <div class="col-md-10 ms-auto me-auto">
                         
                         <div class="form-group">
                                 <label for="editSchoolyear">SchoolYear</label>
@@ -157,7 +157,7 @@
 
                                 </select>
                             </div>
-                            </div>
+                          
 
                             <div class="form-group">
                                 <label for="editSemester">Semester</label>
@@ -208,7 +208,7 @@
     if (message === 'created') {
         swal({
             title: "Success!",
-            text: "New student record created successfully!",
+            text: "New SchoolYear record created successfully!",
             icon: "success"
         }).then(() => {
             window.location.href = "SchoolYearindex.php"; // Removes message from URL
@@ -216,7 +216,7 @@
     } else if (message === 'error') {
         swal({
             title: "Error!",
-            text: "Failed to create student record.",
+            text: "Failed to create stuSchoolYeardent record.",
             icon: "error"
         }).then(() => {
             window.location.href = "SchoolYearindex.php";
@@ -225,7 +225,7 @@
     if (message === 'deleted') {
         swal({
             title: "Success!",
-            text: "Student record deleted successfully!",
+            text: "SchoolYear record deleted successfully!",
             icon: "success"
         }).then(() => {
             window.location.href = "SchoolYearindex.php"; // Removes message from URL
@@ -233,7 +233,7 @@
     } else if (message === 'error') {
         swal({
             title: "Error!",
-            text: "Failed to delete student record.",
+            text: "Failed to delete SchoolYear record.",
             icon: "error"
         }).then(() => {
             window.location.href = "SchoolYearindex.php";
@@ -242,7 +242,7 @@
     if (message === 'updated') {
         swal({
             title: "Success!",
-            text: "Student record updated successfully!",
+            text: "SchoolYear record updated successfully!",
             icon: "success"
         }).then(() => {
             window.location.href = "SchoolYearindex.php"; // Removes message from URL
@@ -250,7 +250,7 @@
     } else if (message === 'error') {
         swal({
             title: "Error!",
-            text: "Failed to update student record.",
+            text: "Failed to update SchoolYear record.",
             icon: "error"
         }).then(() => {
             window.location.href = "SchoolYearindex.php";
