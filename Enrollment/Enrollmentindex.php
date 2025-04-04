@@ -38,8 +38,7 @@
                             <th>E_ID</th>
                             <th>User_ID</th>
                             <th>Schoolyr_ID	</th>
-                            <th>Subject_ID	</th>
-                            
+                            <th>Subject_ID	</th>                         
                             <th>Actions</th>
                           </tr>
                         </tfoot>
@@ -58,9 +57,9 @@
                                 echo "<td>";
                                 echo "<a href='#' class='btn btn-link btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#editEnrollmentModal' 
                                         data-E_ID='".$row["E_ID"]."' 
-                                        data-Schoolyr_ID='".$row["User_ID"]."' 
+                                        data-User_ID='".$row["User_ID"]."' 
                                         data-Schoolyr_ID='".$row["Schoolyr_ID"]."' 
-                                        data-Semester='".$row["Subject_ID"]."'>                                     
+                                        data-Subject_ID='".$row["Subject_ID"]."'>                                     
                                         <i class='fa fa-edit'></i>                                  
                                       </a>";
                                     
@@ -121,16 +120,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="Schoolyr_ID">SchoolYear</label>
-                                <select name="Schoolyr_ID" id="Schoolyr_ID" class="form-control" required>
+                                <label for="Schoolyear">SchoolYear</label>
+                                <select name="Schoolyear" id="Schoolyr_ID" class="form-control" required>
                                     <option value="">Select SchoolYear</option>
                                     <?php
                                     include ('../Config/connecttodb.php');
-                                    $sql = "SELECT * FROM Schoolyear WHERE Type = 'SchoolYear'";
+                                    $sql = "SELECT * FROM schoolyear";
                                     $result = $conn->query($sql);
                                     if ($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) {
-                                            echo "<option value='".$row["Schoolyr_ID"]."'>".$row["Schoolyr_ID"]."</option>";  
+                                            echo "<option value='".$row["Schoolyear"]."'>".$row["Schoolyear"]."</option>";  
                                         }
                                     } else {
                                         echo "<option value=''>No SchoolYear found</option>";
@@ -141,16 +140,16 @@
 
 
                             <div class="form-group">
-                                <label for="Subject_ID">Subject</label>                            
-                                <select name="Subject_ID" id="Subject_ID" class="form-control" required>
+                                <label for="Subjectdesc">Subject</label>                            
+                                <select name="Subjectdesc" id="Subject_ID" class="form-control" required>
                                     <option value="">Select Subject</option>
                                     <?php
                                     include ('../Config/connecttodb.php');
-                                    $sql = "SELECT * FROM user WHERE Type = 'Subject'";
+                                    $sql = "SELECT * FROM subject";
                                     $result = $conn->query($sql);
                                     if ($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) {
-                                            echo "<option value='".$row["Subject_ID"]."</option>";
+                                            echo "<option value='".$row["Subjectdesc"]."'>".$row["Subjectdesc"]."</option>";
                                         }
                                     } else {
                                         echo "<option value=''>No Subject found</option>";
@@ -161,67 +160,7 @@
                             </div>
 
                             
-                            <div class="form-group">
-                                <label for="Date">Date</label>                           
-                                <select name="Date" id="Date" class="form-control" required>
-                                    <option value="">Select Date</option>
-                                    <?php
-                                    include ('../Config/connecttodb.php');
-                                    $sql = "SELECT * FROM user WHERE Type = 'Date'";
-                                    $result = $conn->query($sql);
-                                    if ($result->num_rows > 0) {
-                                        while($row = $result->fetch_assoc()) {
-                                            echo "<option value='".$row["Date"]."</option>";
-                                        }
-                                    } else {
-                                        echo "<option value=''>No Date found</option>";
-                                    }
-                                
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Year">Year</label>                       
-                                <select name="Year" id="Year" class="form-control" required>
-                                    <option value="">Select Year</option>
-                                    <?php
-                                    include ('../Config/connecttodb.php');
-                                    $sql = "SELECT * FROM user WHERE Type = 'Year'";
-                                    $result = $conn->query($sql);
-                                    if ($result->num_rows > 0) {
-                                        while($row = $result->fetch_assoc()) {
-                                            echo "<option value='".$row["Year"]."</option>";
-                                        }
-                                    } else {
-                                        echo "<option value=''>No Year found</option>";
-                                    }
-                                
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Course_ID">Course</label>                       
-                                <select name="Course_ID" id="Course" class="form-control" required>
-                                    <option value="">Select Course</option>
-                                    <?php
-                                    include ('../Config/connecttodb.php');
-                                    $sql = "SELECT * FROM user WHERE Type = 'Course'";
-                                    $result = $conn->query($sql);
-                                    if ($result->num_rows > 0) {
-                                        while($row = $result->fetch_assoc()) {
-                                            echo "<option value='".$row["Course_ID"]."</option>";
-                                        }
-                                    } else {
-                                        echo "<option value=''>No Course found</option>";
-                                    }
-                                
-                                    ?>
-                                </select>
-                            </div>
-                            
-                    
+                         
                            
                         </div>
                     </div>
@@ -262,18 +201,6 @@
                                 <label for="Subject_ID">Subject_ID</label>
                                 <input type="text" class="form-control" id="Subject_ID" name="Subject_ID" placeholder="Enter Subject_ID" required>
                             </div>
-                            <div class="form-group">
-                                <label for="Date">Date</label>
-                                <input type="text" class="form-control" id="Date" name="Date" placeholder="Enter Date" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="Year">Year</label>
-                                <input type="text" class="form-control" id="Year" name="Year" placeholder="Enter Year" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="Course_ID">Course_ID</label>
-                                <input type="text" class="form-control" id="Course_ID" name="Course_ID" placeholder="Enter Course_ID" required>
-                            </div>
                             
                         </div>
                         
@@ -302,9 +229,6 @@
         document.getElementById("editUser_id").value = button.getAttribute("data-User_id");
         document.getElementById("editSchoolyr_ID").value = button.getAttribute("data-Schoolyr_ID");
         document.getElementById("editSubject_ID").value = button.getAttribute("data-Subject_ID");
-        document.getElementById("editDate").value = button.getAttribute("data-Date");
-        document.getElementById("editYear").value = button.getAttribute("data-Year");
-        document.getElementById("editCourse_ID").value = button.getAttribute("data-Course_ID");
        
     });
 });
